@@ -1,6 +1,7 @@
 import { auth, currentUser } from '@clerk/nextjs/server';
 import { createClerkSupabaseClient } from '@/lib/auth/clerk-supabase';
 import UserSyncButton from './user-sync-button';
+import Link from 'next/link';
 
 export default async function DashboardPage() {
   const { userId } = await auth();
@@ -134,6 +135,15 @@ export default async function DashboardPage() {
             "A tradition unlike any other" - The Masters
           </p>
         </div>
+      </div>
+
+      <div className="text-center mt-6">
+        <Link 
+          href="/draft" 
+          className="bg-[#1e6e16] px-8 py-3 text-white font-medium rounded-md inline-flex items-center hover:bg-[#174c10] transition-colors duration-300 shadow-green"
+        >
+          Create Your Team
+        </Link>
       </div>
     </div>
   );

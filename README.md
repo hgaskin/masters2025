@@ -15,6 +15,13 @@ Masters25 is a full-stack web application for managing a Masters Tournament golf
 - **Responsive Design**: Works seamlessly on desktop and mobile
 - **Payment Tracking**: Admin tools to track entry fees
 
+## 🧩 Key Pages
+
+- **Home**: Introduction to the Masters Pool with tournament countdown
+- **Draft**: Interactive golfer selection experience with real-time updates
+- **Dashboard**: User's pool entries, standings, and tournament information
+- **Leaderboard**: Live tournament scores and pool standings
+
 ## 🔧 Tech Stack
 
 - **Frontend**: Next.js 14 (App Router), React, TypeScript
