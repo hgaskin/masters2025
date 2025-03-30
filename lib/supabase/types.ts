@@ -309,6 +309,60 @@ export interface Database {
           }
         ]
       }
+      tournaments: {
+        Row: {
+          id: string
+          name: string
+          start_date: string
+          end_date: string
+          course: string
+          location: string
+          purse: string | null
+          status: string
+          current_round: number | null
+          cut_line: number | null
+          external_id: string | null
+          external_system: string | null
+          updated_at: string
+          created_at: string
+          year: string
+        }
+        Insert: {
+          id: string
+          name: string
+          start_date: string
+          end_date: string
+          course: string
+          location: string
+          purse?: string | null
+          status: string
+          current_round?: number | null
+          cut_line?: number | null
+          external_id?: string | null
+          external_system?: string | null
+          updated_at?: string
+          created_at?: string
+          year: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          start_date?: string
+          end_date?: string
+          course?: string
+          location?: string
+          purse?: string | null
+          status?: string
+          current_round?: number | null
+          cut_line?: number | null
+          external_id?: string | null
+          external_system?: string | null
+          updated_at?: string
+          created_at?: string
+          year?: string
+        }
+        Relationships: []
+      }
     }
     Views: {}
     Functions: {}

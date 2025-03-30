@@ -1,14 +1,15 @@
-# 🏌️ Golf Data Integration Strategy
+# 🏌️ The AUGUSTA ENGINE: Golf Data Integration Strategy
 
 ## Overview
 
-This document outlines our strategy for collecting, normalizing, and storing golf tournament data from multiple external API providers. The core principle is to create a robust abstraction layer between external data sources and our application, ensuring:
+This document outlines our strategy for collecting, normalizing, and storing golf tournament data from multiple external API providers. The AUGUSTA ENGINE is our unified data processing system that ensures:
 
 1. **Source Independence**: The ability to switch between data providers without affecting the application
 2. **Data Consistency**: Uniform data structure regardless of the original source
 3. **Fault Tolerance**: Continued operation even if a primary data source goes down
 4. **Cost Management**: Flexibility to choose the most cost-effective provider at any time
 5. **Data Ownership**: We maintain a complete copy of all required data in our own database
+6. **Update Frequency Management**: Different data types are updated at appropriate intervals
 
 ## System Architecture
 
@@ -23,11 +24,11 @@ This document outlines our strategy for collecting, normalizing, and storing gol
          ▼                      ▼                      ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │                                                                 │
-│               Data Ingestion & Normalization Layer              │
+│                        THE AUGUSTA ENGINE                       │
 │                                                                 │
 │  ┌─────────────────┐    ┌─────────────────┐    ┌──────────────┐ │
 │  │                 │    │                 │    │              │ │
-│  │ API Adaptors    │    │ Data Cleaners   │    │ Schedulers   │ │
+│  │ API Adaptors    │    │ Data Normalizer │    │ Schedulers   │ │
 │  │                 │    │                 │    │              │ │
 │  └─────────────────┘    └─────────────────┘    └──────────────┘ │
 │                                                                 │
@@ -40,8 +41,8 @@ This document outlines our strategy for collecting, normalizing, and storing gol
 │                                                                 │
 │  ┌─────────────────┐    ┌─────────────────┐    ┌──────────────┐ │
 │  │                 │    │                 │    │              │ │
-│  │ golfers         │    │ tournament_     │    │ scores       │ │
-│  │                 │    │ metadata        │    │              │ │
+│  │ golfers         │    │ tournaments     │    │ scores       │ │
+│  │                 │    │                 │    │              │ │
 │  └─────────────────┘    └─────────────────┘    └──────────────┘ │
 │                                                                 │
 └───────────────────────────────────┬─────────────────────────────┘
@@ -88,49 +89,62 @@ This document outlines our strategy for collecting, normalizing, and storing gol
 
 ## Data Synchronization Strategy
 
-### 1. Scheduled Data Collection
+### 1. Update Frequency Management
 
-We'll implement scheduled jobs that run at strategic intervals to collect and update:
+The AUGUSTA ENGINE manages different update frequencies based on data type and tournament status:
 
-- **Tournament Schedule**: Weekly updates
-- **Golfer Information**: Daily updates during tournament weeks
-- **Live Scoring**: Every 5-10 minutes during active tournament rounds
-- **Results & Statistics**: After round completion
+#### Frequent Updates (during tournaments)
+- **Leaderboard data**: Every 5 minutes during tournament play
+- **Scorecards**: Every 5 minutes during tournament play
+- **Player statuses**: Updated with leaderboard (cut, withdrawn, etc.)
+
+#### Semi-frequent Updates
+- **Tournament details**: Daily during tournament
+- **Tee times**: Once set, rarely change
+
+#### Infrequent Updates
+- **Player profiles**: Weekly or before tournament
+- **Tournament schedules**: Weekly
+- **Historical data**: After tournament completion
 
 ### 2. Data Normalization Process
 
-For each data type, we'll create adaptors that transform provider-specific formats into our standardized schema:
+For each data type, the AUGUSTA ENGINE includes adaptors that transform provider-specific formats into our standardized schema:
 
 ```typescript
-// Example adaptor interface
-interface APIAdaptor {
-  getTournamentSchedule(): Promise<NormalizedSchedule>;
-  getGolferDetails(id: string): Promise<NormalizedGolfer>;
-  getLeaderboard(tournamentId: string): Promise<NormalizedLeaderboard>;
-  // ...etc
-}
-
-// Provider-specific implementations
-class SportradarAdaptor implements APIAdaptor {
-  // Implementation for Sportradar
-}
-
-class SlashGolfAdaptor implements APIAdaptor {
-  // Implementation for SlashGolf
+// Provider interface
+export interface GolfAPIProvider {
+  name: string;
+  isHealthy: boolean;
+  
+  // Tournament Methods
+  getTournamentSchedule(year: string): Promise<NormalizedSchedule>;
+  getTournamentDetails(tournamentId: string, year: string): Promise<NormalizedTournament>;
+  
+  // Golfer Methods
+  getGolferList(tournamentId: string, year: string): Promise<NormalizedGolfer[]>;
+  getGolferDetails(golferId: string): Promise<NormalizedGolfer>;
+  
+  // Leaderboard Methods  
+  getLeaderboard(tournamentId: string, year: string, round?: number): Promise<NormalizedLeaderboard>;
+  
+  // Health Check
+  checkHealth(): Promise<boolean>;
 }
 ```
 
 ### 3. Fallback Mechanism
 
-We'll implement a provider fallback chain that:
+The AUGUSTA ENGINE implements fallback logic to ensure continuous data availability:
 
 1. Attempts to fetch from primary provider
-2. If unsuccessful, attempts secondary provider
-3. If both fail, uses cached data with appropriate UI indication
+2. If unsuccessful, automatically tries secondary provider
+3. Maintains a cache to reduce API calls and provide data when APIs are unavailable
+4. Tracks provider health status for intelligent routing
 
 ### 4. Data Storage Design
 
-Our Supabase schema will store normalized data independently of the source:
+Our Supabase schema stores normalized data independently of the source:
 
 **golfers table**:
 - `id` (UUID, primary key)
@@ -138,60 +152,77 @@ Our Supabase schema will store normalized data independently of the source:
 - `external_id` (TEXT) - ID from external system
 - `external_system` (TEXT) - Which API provided this data
 - `rank` (INTEGER)
-- `country` (TEXT)
-- `countryCode` (TEXT)
 - `avatar_url` (TEXT)
-- `odds` (TEXT) - For Masters specific odds
+- `odds` (NUMERIC)
+- `status` (TEXT) - active, cut, WD, DQ
+- `updated_at` (TIMESTAMP)
 
 **tournament_scores table**:
 - `id` (UUID, primary key)
 - `golfer_id` (UUID, foreign key to golfers.id)
+- `tournament_id` (UUID, foreign key to tournaments.id)
 - `round` (INTEGER)
 - `score` (INTEGER)
-- `status` (TEXT) - active, cut, WD, DQ
+- `r1_score`, `r2_score`, `r3_score`, `r4_score` (INTEGER)
 - `thru` (INTEGER) - Current hole (for live scoring)
-- `last_updated` (TIMESTAMP)
+- `position` (INTEGER) - Current position on leaderboard
+- `status` (TEXT) - active, cut, WD, DQ
+- `updated_at` (TIMESTAMP)
 
-## Implementation Plan
+**tournaments table**:
+- `id` (UUID, primary key)
+- `name` (TEXT)
+- `start_date`, `end_date` (TIMESTAMP)
+- `course` (TEXT)
+- `location` (TEXT)
+- `purse` (TEXT)
+- `status` (TEXT) - upcoming, in_progress, completed, canceled
+- `current_round` (INTEGER)
+- `cut_line` (INTEGER)
+- `year` (TEXT)
 
-### Phase 1: Core Data Collection
+## Implementation Status
 
-1. Create API adaptor interfaces for both providers
-2. Implement Sportradar adaptor with fallback to SlashGolf
-3. Set up daily job to collect and normalize golfer information
-4. Set up tournament schedule collection
+### Completed
+- Core provider interfaces
+- Sportradar and SlashGolf adaptors
+- Normalization utilities
+- Data caching layer
+- Sync endpoints for golfers and tournament data
+- Scheduled update configuration
 
-### Phase 2: Live Scoring
+### In Progress
+- Leaderboard sync improvements
+- Admin tools for monitoring API health
+- Scorecards implementation
 
-1. Implement leaderboard data collection
-2. Create scoring history storage
-3. Develop status tracking (cut line, withdrawals, etc.)
-4. Set up frequent polling during tournament hours
+### Planned
+- Push notification system for real-time updates
+- Advanced statistics extraction
+- Expanded course information
 
-### Phase 3: Robustness Enhancements
+## Data Sync Endpoints
 
-1. Add health checks for API providers
-2. Implement automatic fallback switching
-3. Add error logging and notifications
-4. Create admin dashboard for monitoring data collection
+The system includes API routes for synchronizing data:
 
-## Cost Management Strategy
+```
+GET /api/sync-golfers?tournamentId=<id>&year=<year>&apiKey=<key>
+GET /api/sync-tournaments?year=<year>&apiKey=<key>
+GET /api/sync-leaderboard?tournamentId=<id>&year=<year>&round=<round>&apiKey=<key>
+```
 
-To optimize costs while maintaining reliability:
+## Scheduled Updates
 
-1. Use SlashGolf's affordable plans for development and testing
-2. Consider Sportradar for production/tournament weekends if budget allows
-3. Implement caching to reduce API calls
-4. Set up monitoring to track API usage and costs
+For production, we use the scheduling utilities provided by the AUGUSTA ENGINE:
+
+```typescript
+import { updateTournamentData } from '@/lib/augusta-engine/scheduled-updates';
+import { TournamentStatus } from '@/lib/augusta-engine/types';
+
+// Update Masters tournament data
+await updateTournamentData('masters-2025', '2025', TournamentStatus.IN_PROGRESS);
+```
 
 ## Conclusion
 
-By implementing this data strategy, we'll create a robust foundation for the Masters Pool application that:
-
-- Is resilient to external API failures
-- Provides consistent data regardless of source
-- Can adapt to changing cost considerations
-- Maintains our own data ownership
-- Supports the core scoring and leaderboard features reliably
-
-This approach will significantly reduce risk and provide flexibility as the application grows. 
+The AUGUSTA ENGINE provides a robust and flexible foundation for golf data integration, ensuring reliable data availability regardless of external API changes or outages. By normalizing data and implementing intelligent update frequencies, we maximize reliability while minimizing API usage costs. 

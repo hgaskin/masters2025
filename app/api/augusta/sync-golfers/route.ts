@@ -6,9 +6,9 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { createRouteHandlerClient } from '@supabase/ssr/server';
+import { createClient } from '@supabase/supabase-js';
 import { cookies } from 'next/headers';
-import { GolfAPIService } from '@/lib/golf-api/api-service';
+import { GolfAPIService } from '@/lib/augusta-engine';
 import { Database } from '@/lib/supabase/types';
 
 export const dynamic = 'force-dynamic';
@@ -42,7 +42,10 @@ export async function GET(request: NextRequest) {
     const golfAPIService = new GolfAPIService();
     
     // Initialize Supabase client
-    const supabase = createRouteHandlerClient<Database>({ cookies });
+    const supabase = createClient<Database>(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    );
     
     // Fetch golfers from the API
     const golfers = await golfAPIService.getGolferList(tournamentId, year);
@@ -58,12 +61,26 @@ export async function GET(request: NextRequest) {
     // Process each golfer
     for (const golfer of golfers) {
       try {
-        // Check if golfer already exists by external ID
-        const { data: existingGolfers } = await supabase
-          .from('golfers')
-          .select('id, external_id')
-          .eq('external_id', golfer.externalId)
-          .eq('external_system', golfer.externalSystem);
+        // Check if golfer already exists by external ID and system if provided
+        let existingGolfers = null;
+        
+        if (golfer.externalId && golfer.externalSystem) {
+          const { data } = await supabase
+            .from('golfers')
+            .select('id, external_id')
+            .eq('external_id', golfer.externalId)
+            .eq('external_system', golfer.externalSystem);
+          
+          existingGolfers = data;
+        } else {
+          // Try to find by name if no external ID
+          const { data } = await supabase
+            .from('golfers')
+            .select('id')
+            .eq('name', golfer.name);
+            
+          existingGolfers = data;
+        }
         
         // Prepare golfer data for upsert
         const golferData = {
@@ -71,8 +88,8 @@ export async function GET(request: NextRequest) {
           rank: golfer.rank || null,
           odds: golfer.odds ? parseFloat(golfer.odds) : null,
           avatar_url: golfer.avatarUrl || null,
-          external_id: golfer.externalId,
-          external_system: golfer.externalSystem,
+          external_id: golfer.externalId || null,
+          external_system: golfer.externalSystem || null,
           updated_at: new Date().toISOString()
         };
         
