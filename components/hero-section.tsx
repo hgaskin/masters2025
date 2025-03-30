@@ -28,39 +28,39 @@ interface HistoricalMomentsInfo {
 
 const HISTORICAL_MOMENTS_INFO: HistoricalMomentsInfo = {
   [CLOUDINARY_IMAGES.HISTORICAL_MOMENTS.SARAZEN_1935]: {
-    title: "The Shot Heard &apos;Round the World",
+    title: "The Shot Heard 'Round the World",
     year: "1935",
-    description: "Gene Sarazen&apos;s double eagle on the 15th hole at Augusta National, known as the &apos;shot heard &apos;round the world&apos;, helped him force a playoff that he would win.",
+    description: "Gene Sarazen's double eagle on the 15th hole at Augusta National, known as the 'shot heard 'round the world', helped him force a playoff that he would win.",
   },
   [CLOUDINARY_IMAGES.HISTORICAL_MOMENTS.BUBBA_2012]: {
-    title: "Bubba&apos;s Miracle Shot",
+    title: "Bubba's Miracle Shot",
     year: "2012",
-    description: "Bubba Watson&apos;s incredible hook shot from the trees on the 10th hole in the playoff secured his first green jacket.",
+    description: "Bubba Watson's incredible hook shot from the trees on the 10th hole in the playoff secured his first green jacket.",
   },
   [CLOUDINARY_IMAGES.HISTORICAL_MOMENTS.TIGER_2005]: {
-    title: "Tiger&apos;s Iconic Chip",
+    title: "Tiger's Iconic Chip",
     year: "2005",
-    description: "Tiger Woods&apos; miraculous chip-in on the 16th hole that paused on the lip before dropping, en route to his fourth Masters victory.",
+    description: "Tiger Woods' miraculous chip-in on the 16th hole that paused on the lip before dropping, en route to his fourth Masters victory.",
   },
   [CLOUDINARY_IMAGES.HISTORICAL_MOMENTS.JACK_1986]: {
-    title: "The Golden Bear&apos;s Last Roar",
+    title: "The Golden Bear's Last Roar",
     year: "1986",
-    description: "Jack Nicklaus&apos; historic back-nine charge to win his sixth Masters at age 46, becoming the oldest champion in tournament history.",
+    description: "Jack Nicklaus' historic back-nine charge to win his sixth Masters at age 46, becoming the oldest champion in tournament history.",
   },
   [CLOUDINARY_IMAGES.HISTORICAL_MOMENTS.PHIL_2010]: {
-    title: "Phil&apos;s Pine Straw Miracle",
+    title: "Phil's Pine Straw Miracle",
     year: "2010",
-    description: "Phil Mickelson&apos;s daring shot from the pine straw through a narrow gap between trees on the 13th hole, leading to his third Masters win.",
+    description: "Phil Mickelson's daring shot from the pine straw through a narrow gap between trees on the 13th hole, leading to his third Masters win.",
   },
   [CLOUDINARY_IMAGES.HISTORICAL_MOMENTS.LOUIS_2012]: {
     title: "Double Eagle Magic",
     year: "2012",
-    description: "Louis Oosthuizen&apos;s incredible albatross on the par-5 2nd hole, only the fourth double eagle in Masters history.",
+    description: "Louis Oosthuizen's incredible albatross on the par-5 2nd hole, only the fourth double eagle in Masters history.",
   },
   [CLOUDINARY_IMAGES.HISTORICAL_MOMENTS.MIZE_1987]: {
-    title: "The Augusta Native&apos;s Dream",
+    title: "The Augusta Native's Dream",
     year: "1987",
-    description: "Local favorite Larry Mize&apos;s stunning 140-foot chip-in on the second playoff hole to defeat Greg Norman.",
+    description: "Local favorite Larry Mize's stunning 140-foot chip-in on the second playoff hole to defeat Greg Norman.",
   },
   [CLOUDINARY_IMAGES.HISTORICAL_MOMENTS.JACK_1975]: {
     title: "The Three-Way Battle",
@@ -68,14 +68,14 @@ const HISTORICAL_MOMENTS_INFO: HistoricalMomentsInfo = {
     description: "An epic final round duel between Jack Nicklaus, Johnny Miller, and Tom Weiskopf, with Nicklaus prevailing by one shot.",
   },
   [CLOUDINARY_IMAGES.HISTORICAL_MOMENTS.ARNIE_1962]: {
-    title: "Arnie&apos;s Army Marches On",
+    title: "Arnie's Army Marches On",
     year: "1962",
-    description: "Arnold Palmer&apos;s playoff victory over Gary Player and Dow Finsterwald, earning his third green jacket.",
+    description: "Arnold Palmer's playoff victory over Gary Player and Dow Finsterwald, earning his third green jacket.",
   },
   [CLOUDINARY_IMAGES.HISTORICAL_MOMENTS.LYLE_1988]: {
-    title: "Sandy&apos;s Fairway Bunker Magic",
+    title: "Sandy's Fairway Bunker Magic",
     year: "1988",
-    description: "Sandy Lyle&apos;s clutch birdie from the fairway bunker on 18 to become the first British player to win the Masters.",
+    description: "Sandy Lyle's clutch birdie from the fairway bunker on 18 to become the first British player to win the Masters.",
   }
 };
 

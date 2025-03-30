@@ -96,6 +96,7 @@ export interface Database {
           created_at: string
           updated_at: string | null
           external_id: string | null
+          external_system: string | null
         }
         Insert: {
           id?: string
@@ -106,6 +107,7 @@ export interface Database {
           created_at?: string
           updated_at?: string | null
           external_id?: string | null
+          external_system?: string | null
         }
         Update: {
           id?: string
@@ -116,6 +118,7 @@ export interface Database {
           created_at?: string
           updated_at?: string | null
           external_id?: string | null
+          external_system?: string | null
         }
         Relationships: []
       }
@@ -231,6 +234,77 @@ export interface Database {
             columns: ["golfer_id"]
             isOneToOne: false
             referencedRelation: "golfers"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      team_golfers: {
+        Row: {
+          id: string
+          team_id: string
+          golfer_id: string
+          position: number
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          team_id: string
+          golfer_id: string
+          position: number
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          team_id?: string
+          golfer_id?: string
+          position?: number
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "team_golfers_golfer_id_fkey"
+            columns: ["golfer_id"]
+            isOneToOne: false
+            referencedRelation: "golfers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "team_golfers_team_id_fkey"
+            columns: ["team_id"]
+            isOneToOne: false
+            referencedRelation: "teams"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      teams: {
+        Row: {
+          id: string
+          user_id: string
+          name: string
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          name: string
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          name?: string
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "teams_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
             referencedColumns: ["id"]
           }
         ]
