@@ -76,7 +76,7 @@ app/
 Run the test script to verify API connectivity:
 
 ```bash
-bun run test:golf-api
+bun run test:augusta-engine
 ```
 
 This will test each provider individually and then test the combined service with fallback functionality.

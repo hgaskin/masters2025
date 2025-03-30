@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test:golf-api": "bun run scripts/test-golf-api.ts"
+    "test:augusta-engine": "bun run scripts/test-augusta-engine.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.12.9",
