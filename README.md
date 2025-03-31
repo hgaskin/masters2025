@@ -122,6 +122,8 @@ Each round missed adds +8 strokes. Missing two rounds = +16. This keeps it fair 
 - [x] Clerk webhook for user synchronization
 - [x] Custom loading animations
 - [x] Homepage design with tournament countdown
+- [x] Augusta Engine API integration with Sportradar and SlashGolf
+- [x] Complete database schema implementation with indexes and constraints
 - [ ] Team draft interface (in progress)
 - [ ] Leaderboard implementation
 - [ ] Payment tracking

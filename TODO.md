@@ -12,6 +12,7 @@ for local dev im using cloudflare tunnel: cloudflared tunnel --url http://localh
 
 ### Core Database Implementation
 - [x] Set up Supabase tables structure
+- [x] Implement improved database schema for tournament flexibility
 - [ ] Create API endpoints for all core operations
 - [x] Implement database access patterns for golfers sync
 - [ ] Add robust error handling for database operations
@@ -23,11 +24,22 @@ for local dev im using cloudflare tunnel: cloudflared tunnel --url http://localh
 - [x] Create unified GolfAPIService with provider fallback
 - [x] Build `/api/sync-golfers` endpoint for syncing to database
 - [x] Create data normalization utilities through providers
+- [x] Build `/api/sync-tournaments` endpoint for syncing tournament data
+- [x] Build `/api/sync-leaderboard` endpoint for syncing leaderboard data
+- [x] Update sync endpoints to use improved schema
 - [ ] Set up scheduled jobs for data collection
 - [~] Build admin tools for monitoring API health (Testing script created, needs dashboard)
 - [x] Implement caching layer to reduce API calls
+- [ ] Create CLI tool for manual data sync operations
+- [ ] Build admin UI for on-demand data synchronization
+- [ ] Implement tournament-specific sync controls (Masters leaderboard, etc.)
+- [ ] Add detailed logging for all sync operations
+- [ ] Integrate earnings and FedExCup points data from SlashGolf API
+- [ ] Add OWGR (Official World Golf Ranking) integration from SlashGolf API
 
 ### Team Draft Experience
+- [ ] Implement golfer grouping system for tiered selection
+- [ ] Create pool rules configuration for draft constraints
 - [ ] Complete golfer selection interface with real data
 - [ ] Implement saving team selections to database
 - [ ] Add validation rules for team creation
@@ -58,6 +70,9 @@ for local dev im using cloudflare tunnel: cloudflared tunnel --url http://localh
 - [ ] Implement system for marking entries as paid
 - [~] Build tools for monitoring data sync status (Script created, needs UI)
 - [x] Create administrative override for data sources (API key system)
+- [ ] Develop dashboard for manual API sync operations
+- [ ] Create audit logs for all administrative actions
+- [ ] Add system status monitoring with notifications
 
 ### Tournament Status
 - [x] Add countdown timer to tournament
@@ -80,6 +95,7 @@ for local dev im using cloudflare tunnel: cloudflared tunnel --url http://localh
 ### Infrastructure
 - [x] Update Supabase auth from auth-helpers to SSR package (careful here - because im also using Clerk for auth, right? so need to make sure this doesnt collide)
 - [x] Fix type organization in the codebase
+- [x] Create comprehensive database schema documentation
 - [ ] Set up comprehensive error logging
 - [ ] Implement performance monitoring
 - [x] Create test utilities for API integrations
@@ -91,6 +107,26 @@ for local dev im using cloudflare tunnel: cloudflared tunnel --url http://localh
 - [ ] Create user guide
 - [x] Document code and architecture for Golf API
 - [x] Document data synchronization strategy
+
+## 🔮 AUGUSTA ENGINE Future Enhancements
+
+### Query Interface
+- [ ] Build natural language query interface for golf data
+- [ ] Implement read methods to extract specific player/tournament information
+- [ ] Create utility functions for common questions (e.g., "What is Player X's score today?")
+- [ ] Add context-aware responses based on tournament status
+
+### Data Analysis
+- [ ] Implement statistical analysis tools for performance trends
+- [ ] Add historical comparisons for player performance
+- [ ] Develop prediction models for tournament outcomes
+- [ ] Create visualizations for player performance
+
+### External Integrations
+- [ ] Add integration with additional data providers
+- [ ] Implement webhook support for real-time data updates
+- [ ] Create API endpoints for third-party consumption
+- [ ] Build export functionality for data analysis
 
 ## 🔄 Ongoing Tasks
 
@@ -108,6 +144,9 @@ for local dev im using cloudflare tunnel: cloudflared tunnel --url http://localh
 - We'll implement a hybrid API approach using both Sportradar and SlashGolf with fallback logic 
 
 ## 🔄 Recently Completed Tasks (FYI we are in the year 2025)
+- [x] (2025-04-01) Designed improved database schema for multi-tournament support
+- [x] (2025-04-01) Created database schema documentation
+- [x] (2025-04-01) Updated sync endpoints for the new schema
 - [x] (2025-03-30) Implemented SlashGolf API Provider
 - [x] (2025-03-30) Implemented Sportradar API Provider  
 - [x] (2025-03-30) Created GolfAPIService with provider fallback
