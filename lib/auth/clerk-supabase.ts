@@ -4,16 +4,13 @@ import { Database } from '../supabase/types';
 
 /**
  * Creates a Supabase client authenticated with the Clerk user
- * Following the official Clerk-Supabase integration guide:
- * https://clerk.com/docs/integrations/databases/supabase
+ * Using the official Supabase Third-Party Auth integration:
+ * https://supabase.com/blog/clerk-tpa-pricing
+ * 
+ * Following the latest pattern from Clerk:
+ * https://clerk.com/changelog/2025-03-31-supabase-integration
  */
 export async function createClerkSupabaseClient() {
-  const authData = await auth();
-  
-  if (!authData.userId) {
-    throw new Error('User not authenticated');
-  }
-  
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
   
@@ -21,27 +18,24 @@ export async function createClerkSupabaseClient() {
     throw new Error('Missing Supabase environment variables');
   }
   
-  // Get the Supabase JWT from Clerk using the template
-  const supabaseToken = await authData.getToken({ template: 'supabase' });
-  
-  if (!supabaseToken) {
-    throw new Error('Unable to get Supabase token from Clerk');
-  }
-  
-  // Create a Supabase client with the token
+  // Create a Supabase client with the accessToken callback pattern
   return createClient<Database>(
     supabaseUrl,
     supabaseKey,
     {
-      global: {
-        headers: {
-          Authorization: `Bearer ${supabaseToken}`
-        }
-      },
       auth: {
         persistSession: false,
         autoRefreshToken: false,
         detectSessionInUrl: false,
+      },
+      // Using the accessToken callback pattern is now recommended
+      // for both server and client components
+      async accessToken() {
+        const authData = await auth();
+        if (!authData.userId) {
+          throw new Error('User not authenticated');
+        }
+        return authData.getToken();
       },
     }
   );
