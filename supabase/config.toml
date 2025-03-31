@@ -79,4 +79,4 @@ secret = ""
 
 [auth.third_party.clerk]
 enabled = true
-domain = "${CLERK_DOMAIN}" 
+domain = "internal-stag-75.clerk.accounts.dev" 
