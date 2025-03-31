@@ -69,7 +69,7 @@ export async function GET(request: NextRequest) {
           .update({
             status: leaderboard.status.toString(),
             current_round: leaderboard.roundId || 1,
-            cut_line: leaderboard.cutLine,
+            cut_line: leaderboard.cutLine ? leaderboard.cutLine.toString() : null,
             updated_at: new Date().toISOString()
           })
           .eq('id', tournamentId);
@@ -91,8 +91,10 @@ export async function GET(request: NextRequest) {
             location: 'Unknown Location',
             status: leaderboard.status.toString(),
             current_round: leaderboard.roundId || 1,
-            cut_line: leaderboard.cutLine,
-            year: year,
+            cut_line: leaderboard.cutLine ? leaderboard.cutLine.toString() : null,
+            year: parseInt(year),
+            par: 72, // Default value
+            rounds: 4, // Default value
             created_at: new Date().toISOString(),
             updated_at: new Date().toISOString()
           });
@@ -119,16 +121,27 @@ export async function GET(request: NextRequest) {
         // First ensure the golfer exists in the golfers table
         await ensureGolferExists(supabase, player.golferId);
         
+        // Ensure the tournament-golfer relationship exists and update status
+        await ensureTournamentGolferExists(supabase, tournamentId, player.golferId, player.status);
+        
         // Check if score record already exists for this golfer and round
         const { data: existingScores } = await supabase
           .from('tournament_scores')
           .select('id')
           .eq('golfer_id', player.golferId)
+          .eq('tournament_id', tournamentId)
           .eq('round', leaderboard.roundId || 1);
+        
+        // Calculate total score from all rounds
+        const totalScore = calculateTotalScore(player);
+        
+        // Access extended properties that may not be in the type definition
+        const extendedPlayer = player as any;
         
         // Prepare score data
         const scoreData = {
           golfer_id: player.golferId,
+          tournament_id: tournamentId,
           round: leaderboard.roundId || 1,
           score: player.score,
           thru: player.thru || null,
@@ -137,8 +150,10 @@ export async function GET(request: NextRequest) {
           r3_score: player.round3 || null,
           r4_score: player.round4 || null,
           today_score: player.today || null,
-          position: player.position,
-          status: player.status,
+          total_score: totalScore,
+          position: player.position ? player.position.toString() : null,
+          official_position: extendedPlayer.officialPosition ? extendedPlayer.officialPosition.toString() : player.position ? player.position.toString() : null,
+          status: player.status.toString(),
           updated_at: new Date().toISOString()
         };
         
@@ -158,17 +173,11 @@ export async function GET(request: NextRequest) {
             .from('tournament_scores')
             .insert({
               ...scoreData,
-              tournament_id: tournamentId, 
               created_at: new Date().toISOString()
             });
           
           if (error) throw error;
           results.created++;
-        }
-        
-        // Update golfer status if changed (cut, withdrawn, etc.)
-        if (player.status !== GolferStatus.ACTIVE) {
-          await updateGolferStatus(supabase, player.golferId, player.status);
         }
       } catch (error) {
         console.error(`Error syncing score for golfer ${player.golferId}:`, error);
@@ -196,6 +205,26 @@ export async function GET(request: NextRequest) {
 }
 
 /**
+ * Helper function to calculate total score from all available rounds
+ */
+function calculateTotalScore(player: any): number | null {
+  // If player has a total score property, use that
+  if (player.totalScore !== undefined) {
+    return player.totalScore;
+  }
+  
+  // Otherwise calculate from individual rounds
+  let rounds = [player.round1, player.round2, player.round3, player.round4];
+  let validRounds = rounds.filter(r => r !== undefined && r !== null);
+  
+  if (validRounds.length === 0) {
+    return player.score; // Use current round score if no round scores available
+  }
+  
+  return validRounds.reduce((sum, score) => sum + score, 0);
+}
+
+/**
  * Helper function to ensure a golfer exists in the database
  */
 async function ensureGolferExists(supabase: any, golferId: string) {
@@ -220,16 +249,41 @@ async function ensureGolferExists(supabase: any, golferId: string) {
 }
 
 /**
- * Helper function to update golfer status
+ * Helper function to ensure the tournament-golfer relationship exists
+ * and update the golfer's status for this tournament
  */
-async function updateGolferStatus(supabase: any, golferId: string, status: GolferStatus) {
-  await supabase
-    .from('golfers')
-    .update({ 
-      status: status,
-      updated_at: new Date().toISOString()
-    })
-    .eq('id', golferId);
+async function ensureTournamentGolferExists(supabase: any, tournamentId: string, golferId: string, status: GolferStatus) {
+  // Check if the tournament-golfer relationship exists
+  const { data: existingRelationship } = await supabase
+    .from('tournament_golfers')
+    .select('id')
+    .eq('tournament_id', tournamentId)
+    .eq('golfer_id', golferId)
+    .single();
+  
+  const timestamp = new Date().toISOString();
+  
+  if (existingRelationship) {
+    // Update existing relationship with new status
+    await supabase
+      .from('tournament_golfers')
+      .update({ 
+        status: status.toString(),
+        updated_at: timestamp
+      })
+      .eq('id', existingRelationship.id);
+  } else {
+    // Create new tournament-golfer relationship
+    await supabase
+      .from('tournament_golfers')
+      .insert({
+        tournament_id: tournamentId,
+        golfer_id: golferId,
+        status: status.toString(),
+        created_at: timestamp,
+        updated_at: timestamp
+      });
+  }
 }
 
 /**

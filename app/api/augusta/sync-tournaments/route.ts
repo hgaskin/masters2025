@@ -9,7 +9,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { cookies } from 'next/headers';
-import { GolfAPIService } from '@/lib/augusta-engine';
+import { GolfAPIService, TournamentStatus } from '@/lib/augusta-engine';
 import { Database } from '@/lib/supabase/types';
 
 export const dynamic = 'force-dynamic';
@@ -60,6 +60,9 @@ export async function GET(request: NextRequest) {
           .select('id')
           .eq('id', tournament.id);
         
+        // Get extended tournament info that may not be in the type definition
+        const extendedTournament = tournament as any;
+        
         // Prepare tournament data for upsert
         const tournamentData = {
           name: tournament.name,
@@ -67,13 +70,14 @@ export async function GET(request: NextRequest) {
           end_date: tournament.endDate,
           course: tournament.course,
           location: tournament.location,
-          purse: tournament.purse,
-          status: tournament.status,
+          status: tournament.status.toString(),
           current_round: tournament.currentRound || null,
-          external_id: tournament.externalId,
-          external_system: tournament.externalSystem,
-          updated_at: new Date().toISOString(),
-          year: year
+          cut_line: null, // Add cut_line field with null value
+          year: parseInt(year), // Convert year to number
+          par: extendedTournament.par || 72, // Default to standard par
+          purse: extendedTournament.purse || null,
+          rounds: extendedTournament.rounds || 4, // Default to 4 rounds
+          updated_at: new Date().toISOString()
         };
         
         // Update or insert
@@ -135,10 +139,18 @@ async function syncTournamentDetails(supabase: any, golfAPIService: GolfAPIServi
     // Get detailed tournament information
     const tournamentDetails = await golfAPIService.getTournamentDetails(tournamentId, year);
     
+    // Cast to extended type to access additional properties
+    const extendedDetails = tournamentDetails as any;
+    
     // Update tournament with additional details if available
-    const additionalDetails = {
+    const additionalDetails: any = {
       updated_at: new Date().toISOString()
     };
+    
+    // Add additional details if available
+    if (extendedDetails.par) additionalDetails.par = extendedDetails.par;
+    if (extendedDetails.purse) additionalDetails.purse = extendedDetails.purse;
+    if (extendedDetails.rounds) additionalDetails.rounds = extendedDetails.rounds;
     
     // Update the tournament record
     await supabase
@@ -167,16 +179,17 @@ export async function POST(request: NextRequest) {
     if (year) url.searchParams.set('year', year);
     if (apiKey) url.searchParams.set('apiKey', apiKey);
     
-    // Delegate to GET handler
+    // Create a new request and call GET handler
     const newRequest = new NextRequest(url, {
       headers: request.headers
     });
     
     return GET(newRequest);
   } catch (error) {
+    console.error('Error processing POST request:', error);
     return NextResponse.json(
-      { error: 'Invalid request body' },
-      { status: 400 }
+      { error: 'Failed to process request', details: (error as Error).message },
+      { status: 500 }
     );
   }
 } 

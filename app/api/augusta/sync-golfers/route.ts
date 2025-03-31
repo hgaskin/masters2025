@@ -55,6 +55,8 @@ export async function GET(request: NextRequest) {
       total: golfers.length,
       created: 0,
       updated: 0,
+      tournament_relations_created: 0,
+      tournament_relations_updated: 0,
       errors: 0
     };
     
@@ -62,7 +64,8 @@ export async function GET(request: NextRequest) {
     for (const golfer of golfers) {
       try {
         // Check if golfer already exists by external ID and system if provided
-        let existingGolfers = null;
+        let existingGolfer = null;
+        let golferId = null;
         
         if (golfer.externalId && golfer.externalSystem) {
           const { data } = await supabase
@@ -71,7 +74,7 @@ export async function GET(request: NextRequest) {
             .eq('external_id', golfer.externalId)
             .eq('external_system', golfer.externalSystem);
           
-          existingGolfers = data;
+          existingGolfer = data && data.length > 0 ? data[0] : null;
         } else {
           // Try to find by name if no external ID
           const { data } = await supabase
@@ -79,41 +82,83 @@ export async function GET(request: NextRequest) {
             .select('id')
             .eq('name', golfer.name);
             
-          existingGolfers = data;
+          existingGolfer = data && data.length > 0 ? data[0] : null;
         }
         
-        // Prepare golfer data for upsert
+        // Prepare golfer data for upsert - only store persistent golfer data
         const golferData = {
           name: golfer.name,
-          rank: golfer.rank || null,
-          odds: golfer.odds ? parseFloat(golfer.odds) : null,
           avatar_url: golfer.avatarUrl || null,
           external_id: golfer.externalId || null,
           external_system: golfer.externalSystem || null,
           updated_at: new Date().toISOString()
         };
         
-        // Update or insert
-        if (existingGolfers && existingGolfers.length > 0) {
+        // Update or insert golfer
+        if (existingGolfer) {
           // Update existing golfer
           const { error } = await supabase
             .from('golfers')
             .update(golferData)
-            .eq('id', existingGolfers[0].id);
+            .eq('id', existingGolfer.id);
           
           if (error) throw error;
           results.updated++;
+          golferId = existingGolfer.id;
         } else {
           // Insert new golfer
-          const { error } = await supabase
+          const { data, error } = await supabase
             .from('golfers')
             .insert({
               ...golferData,
               created_at: new Date().toISOString()
-            });
+            })
+            .select('id');
           
           if (error) throw error;
           results.created++;
+          golferId = data && data.length > 0 ? data[0].id : null;
+        }
+        
+        // Now handle tournament-specific data in tournament_golfers table
+        if (golferId) {
+          // Check if tournament-golfer relationship exists
+          const { data: existingRelation } = await supabase
+            .from('tournament_golfers')
+            .select('id')
+            .eq('tournament_id', tournamentId)
+            .eq('golfer_id', golferId);
+          
+          const tournamentGolferData = {
+            tournament_id: tournamentId,
+            golfer_id: golferId,
+            tournament_rank: golfer.rank || null,
+            odds: golfer.odds ? parseFloat(golfer.odds) : null,
+            status: 'active', // Default to active for new golfers
+            updated_at: new Date().toISOString()
+          };
+          
+          if (existingRelation && existingRelation.length > 0) {
+            // Update existing relationship
+            const { error } = await supabase
+              .from('tournament_golfers')
+              .update(tournamentGolferData)
+              .eq('id', existingRelation[0].id);
+            
+            if (error) throw error;
+            results.tournament_relations_updated++;
+          } else {
+            // Create new relationship
+            const { error } = await supabase
+              .from('tournament_golfers')
+              .insert({
+                ...tournamentGolferData,
+                created_at: new Date().toISOString()
+              });
+            
+            if (error) throw error;
+            results.tournament_relations_created++;
+          }
         }
       } catch (error) {
         console.error(`Error syncing golfer ${golfer.name}:`, error);
@@ -124,7 +169,7 @@ export async function GET(request: NextRequest) {
     // Return results
     return NextResponse.json({
       success: true,
-      message: `Synced ${results.total} golfers: ${results.created} created, ${results.updated} updated, ${results.errors} errors`,
+      message: `Synced ${results.total} golfers: ${results.created} created, ${results.updated} updated, ${results.tournament_relations_created} tournament relationships created, ${results.tournament_relations_updated} tournament relationships updated, ${results.errors} errors`,
       results
     });
     

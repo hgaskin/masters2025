@@ -104,11 +104,38 @@ The AUGUSTA ENGINE normalizes all provider-specific responses into these common 
 
 ## Supabase Integration
 
-The engine maps normalized data to Supabase tables:
-- `golfers`: Player information
-- `tournament_scores`: Round scores
+The engine maps normalized data to the following Supabase tables:
+
+- `golfers`: Basic player information
+- `tournament_golfers`: Tournament-specific golfer data including odds and status
+- `tournament_scores`: Round-by-round scores for each golfer
 - `tournaments`: Tournament details and status
-- `leaderboards`: Tournament standings (planned)
+
+## Implementation Status
+
+The Augusta Engine is now fully implemented with the following components:
+
+1. **Core API Service**
+   - ✅ Complete provider interface implementation
+   - ✅ SlashGolf API provider integration
+   - ✅ Sportradar API provider integration
+   - ✅ Fallback and caching mechanisms
+
+2. **Sync Endpoints**
+   - ✅ `/api/augusta/sync-golfers`: Functional
+   - ✅ `/api/augusta/sync-tournaments`: Functional
+   - ✅ `/api/augusta/sync-leaderboard`: Functional with schema integration
+
+3. **Database Schema**
+   - ✅ Enhanced schema for multi-tournament support
+   - ✅ Proper indexes for performance optimization
+   - ✅ Complete foreign key relationships
+   - ✅ Constraints for data integrity
+
+4. **Future Enhancements**
+   - Query interface for natural language queries
+   - Additional data providers
+   - Advanced statistics and predictions
 
 ## Data Sync Endpoints
 
@@ -159,3 +186,48 @@ Recommended update frequencies:
 - Golfer information: Before tournament begins
 - Scores and leaderboards: Every 5-10 minutes during tournament play
 - Final results: Once after tournament completion 
+
+## Future Upgrades & Enhancements
+
+The AUGUSTA ENGINE is designed for extensibility. Future planned enhancements include:
+
+### Natural Language Query Interface
+
+A major planned enhancement is transforming the AUGUSTA ENGINE into a queryable interface that can respond to natural language questions about golf data:
+
+```typescript
+// Example future usage
+import { AugustaQueryEngine } from '@/lib/augusta-engine/query';
+
+const queryEngine = new AugustaQueryEngine();
+const result = await queryEngine.ask("What is Rory McIlroy's score today?");
+// Returns: "Rory McIlroy is currently -4 through 12 holes in Round 2"
+```
+
+This would involve:
+- Building natural language processing capabilities
+- Creating specialized read operations for the Supabase database
+- Implementing context-aware responses based on tournament status
+
+### Advanced Data Analysis
+
+Future versions will include:
+- Statistical analysis tools for player performance trends
+- Historical performance comparisons across tournaments
+- Prediction models for tournament outcomes
+- Enhanced visualization capabilities
+
+### Additional Data Providers
+
+The provider architecture allows for easy integration of additional data sources:
+- Official PGA Tour API integration (if/when available)
+- ESPN Golf API integration
+- Golf Channel data integration
+- Historical statistics databases
+
+### External API Surface
+
+Future plans include exposing the AUGUSTA ENGINE capabilities via API:
+- RESTful endpoints for third-party consumption
+- Webhook support for real-time data updates
+- Export functionality for external analysis tools 

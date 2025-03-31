@@ -45,12 +45,210 @@ export interface Database {
         }
         Relationships: []
       }
+      
+      golfers: {
+        Row: {
+          id: string
+          name: string
+          avatar_url: string | null
+          created_at: string
+          updated_at: string | null
+          external_id: string | null
+          external_system: string | null
+        }
+        Insert: {
+          id?: string
+          name: string
+          avatar_url?: string | null
+          created_at?: string
+          updated_at?: string | null
+          external_id?: string | null
+          external_system?: string | null
+        }
+        Update: {
+          id?: string
+          name?: string
+          avatar_url?: string | null
+          created_at?: string
+          updated_at?: string | null
+          external_id?: string | null
+          external_system?: string | null
+        }
+        Relationships: []
+      }
+      
+      tournaments: {
+        Row: {
+          id: string
+          name: string
+          start_date: string
+          end_date: string
+          course: string | null
+          location: string | null
+          status: string | null
+          current_round: number | null
+          cut_line: string | null
+          year: number
+          created_at: string
+          updated_at: string | null
+        }
+        Insert: {
+          id?: string
+          name: string
+          start_date: string
+          end_date: string
+          course?: string | null
+          location?: string | null
+          status?: string | null
+          current_round?: number | null
+          cut_line?: string | null
+          year: number
+          created_at?: string
+          updated_at?: string | null
+        }
+        Update: {
+          id?: string
+          name?: string
+          start_date?: string
+          end_date?: string
+          course?: string | null
+          location?: string | null
+          status?: string | null
+          current_round?: number | null
+          cut_line?: string | null
+          year?: number
+          created_at?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      
+      tournament_golfers: {
+        Row: {
+          id: string
+          tournament_id: string
+          golfer_id: string
+          odds: number | null
+          tournament_rank: number | null
+          status: string | null
+          created_at: string
+          updated_at: string | null
+        }
+        Insert: {
+          id?: string
+          tournament_id: string
+          golfer_id: string
+          odds?: number | null
+          tournament_rank?: number | null
+          status?: string | null
+          created_at?: string
+          updated_at?: string | null
+        }
+        Update: {
+          id?: string
+          tournament_id?: string
+          golfer_id?: string
+          odds?: number | null
+          tournament_rank?: number | null
+          status?: string | null
+          created_at?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tournament_golfers_tournament_id_fkey"
+            columns: ["tournament_id"]
+            isOneToOne: false
+            referencedRelation: "tournaments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tournament_golfers_golfer_id_fkey"
+            columns: ["golfer_id"]
+            isOneToOne: false
+            referencedRelation: "golfers"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      
+      tournament_scores: {
+        Row: {
+          id: string
+          golfer_id: string
+          tournament_id: string
+          round: number
+          score: number
+          thru: number | null
+          r1_score: number | null
+          r2_score: number | null
+          r3_score: number | null
+          r4_score: number | null
+          today_score: number | null
+          position: string | null
+          status: string | null
+          created_at: string
+          updated_at: string | null
+        }
+        Insert: {
+          id?: string
+          golfer_id: string
+          tournament_id: string
+          round: number
+          score: number
+          thru?: number | null
+          r1_score?: number | null
+          r2_score?: number | null
+          r3_score?: number | null
+          r4_score?: number | null
+          today_score?: number | null
+          position?: string | null
+          status?: string | null
+          created_at?: string
+          updated_at?: string | null
+        }
+        Update: {
+          id?: string
+          golfer_id?: string
+          tournament_id?: string
+          round?: number
+          score?: number
+          thru?: number | null
+          r1_score?: number | null
+          r2_score?: number | null
+          r3_score?: number | null
+          r4_score?: number | null
+          today_score?: number | null
+          position?: string | null
+          status?: string | null
+          created_at?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tournament_scores_golfer_id_fkey"
+            columns: ["golfer_id"]
+            isOneToOne: false
+            referencedRelation: "golfers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tournament_scores_tournament_id_fkey"
+            columns: ["tournament_id"]
+            isOneToOne: false
+            referencedRelation: "tournaments"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      
       pools: {
         Row: {
           id: string
           name: string
           description: string | null
           entry_fee: number
+          tournament_id: string
           created_at: string
           updated_at: string | null
           admin_id: string
@@ -61,6 +259,7 @@ export interface Database {
           name: string
           description?: string | null
           entry_fee: number
+          tournament_id: string
           created_at?: string
           updated_at?: string | null
           admin_id: string
@@ -71,6 +270,7 @@ export interface Database {
           name?: string
           description?: string | null
           entry_fee?: number
+          tournament_id?: string
           created_at?: string
           updated_at?: string | null
           admin_id?: string
@@ -83,45 +283,129 @@ export interface Database {
             isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pools_tournament_id_fkey"
+            columns: ["tournament_id"]
+            isOneToOne: false
+            referencedRelation: "tournaments"
+            referencedColumns: ["id"]
           }
         ]
       }
-      golfers: {
+      
+      pool_rules: {
         Row: {
           id: string
-          name: string
-          rank: number | null
-          odds: number | null
-          avatar_url: string | null
+          pool_id: string
+          golfers_required: number
+          max_picks_per_group: number | null
+          groups_required: number | null
           created_at: string
           updated_at: string | null
-          external_id: string | null
-          external_system: string | null
         }
         Insert: {
           id?: string
-          name: string
-          rank?: number | null
-          odds?: number | null
-          avatar_url?: string | null
+          pool_id: string
+          golfers_required: number
+          max_picks_per_group?: number | null
+          groups_required?: number | null
           created_at?: string
           updated_at?: string | null
-          external_id?: string | null
-          external_system?: string | null
         }
         Update: {
           id?: string
-          name?: string
-          rank?: number | null
-          odds?: number | null
-          avatar_url?: string | null
+          pool_id?: string
+          golfers_required?: number
+          max_picks_per_group?: number | null
+          groups_required?: number | null
           created_at?: string
           updated_at?: string | null
-          external_id?: string | null
-          external_system?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "pool_rules_pool_id_fkey"
+            columns: ["pool_id"]
+            isOneToOne: false
+            referencedRelation: "pools"
+            referencedColumns: ["id"]
+          }
+        ]
       }
+      
+      golfer_groups: {
+        Row: {
+          id: string
+          tournament_id: string
+          name: string
+          description: string | null
+          created_at: string
+          updated_at: string | null
+        }
+        Insert: {
+          id?: string
+          tournament_id: string
+          name: string
+          description?: string | null
+          created_at?: string
+          updated_at?: string | null
+        }
+        Update: {
+          id?: string
+          tournament_id?: string
+          name?: string
+          description?: string | null
+          created_at?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "golfer_groups_tournament_id_fkey"
+            columns: ["tournament_id"]
+            isOneToOne: false
+            referencedRelation: "tournaments"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      
+      golfer_group_assignments: {
+        Row: {
+          id: string
+          group_id: string
+          golfer_id: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          group_id: string
+          golfer_id: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          group_id?: string
+          golfer_id?: string
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "golfer_group_assignments_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "golfer_groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "golfer_group_assignments_golfer_id_fkey"
+            columns: ["golfer_id"]
+            isOneToOne: false
+            referencedRelation: "golfers"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      
       entries: {
         Row: {
           id: string
@@ -164,11 +448,14 @@ export interface Database {
           }
         ]
       }
+      
       picks: {
         Row: {
           id: string
           entry_id: string
           golfer_id: string
+          selection_order: number | null
+          group_id: string | null
           created_at: string
           updated_at: string | null
         }
@@ -176,6 +463,8 @@ export interface Database {
           id?: string
           entry_id: string
           golfer_id: string
+          selection_order?: number | null
+          group_id?: string | null
           created_at?: string
           updated_at?: string | null
         }
@@ -183,6 +472,8 @@ export interface Database {
           id?: string
           entry_id?: string
           golfer_id?: string
+          selection_order?: number | null
+          group_id?: string | null
           created_at?: string
           updated_at?: string | null
         }
@@ -200,172 +491,25 @@ export interface Database {
             isOneToOne: false
             referencedRelation: "golfers"
             referencedColumns: ["id"]
-          }
-        ]
-      }
-      tournament_scores: {
-        Row: {
-          id: string
-          golfer_id: string
-          round: number
-          score: number
-          created_at: string
-          updated_at: string | null
-        }
-        Insert: {
-          id?: string
-          golfer_id: string
-          round: number
-          score: number
-          created_at?: string
-          updated_at?: string | null
-        }
-        Update: {
-          id?: string
-          golfer_id?: string
-          round?: number
-          score?: number
-          created_at?: string
-          updated_at?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "tournament_scores_golfer_id_fkey"
-            columns: ["golfer_id"]
-            isOneToOne: false
-            referencedRelation: "golfers"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      team_golfers: {
-        Row: {
-          id: string
-          team_id: string
-          golfer_id: string
-          position: number
-          created_at: string
-        }
-        Insert: {
-          id?: string
-          team_id: string
-          golfer_id: string
-          position: number
-          created_at?: string
-        }
-        Update: {
-          id?: string
-          team_id?: string
-          golfer_id?: string
-          position?: number
-          created_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "team_golfers_golfer_id_fkey"
-            columns: ["golfer_id"]
-            isOneToOne: false
-            referencedRelation: "golfers"
-            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "team_golfers_team_id_fkey"
-            columns: ["team_id"]
+            foreignKeyName: "picks_group_id_fkey"
+            columns: ["group_id"]
             isOneToOne: false
-            referencedRelation: "teams"
+            referencedRelation: "golfer_groups"
             referencedColumns: ["id"]
           }
         ]
-      }
-      teams: {
-        Row: {
-          id: string
-          user_id: string
-          name: string
-          created_at: string
-          updated_at: string
-        }
-        Insert: {
-          id?: string
-          user_id: string
-          name: string
-          created_at?: string
-          updated_at?: string
-        }
-        Update: {
-          id?: string
-          user_id?: string
-          name?: string
-          created_at?: string
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "teams_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      tournaments: {
-        Row: {
-          id: string
-          name: string
-          start_date: string
-          end_date: string
-          course: string
-          location: string
-          purse: string | null
-          status: string
-          current_round: number | null
-          cut_line: number | null
-          external_id: string | null
-          external_system: string | null
-          updated_at: string
-          created_at: string
-          year: string
-        }
-        Insert: {
-          id: string
-          name: string
-          start_date: string
-          end_date: string
-          course: string
-          location: string
-          purse?: string | null
-          status: string
-          current_round?: number | null
-          cut_line?: number | null
-          external_id?: string | null
-          external_system?: string | null
-          updated_at?: string
-          created_at?: string
-          year: string
-        }
-        Update: {
-          id?: string
-          name?: string
-          start_date?: string
-          end_date?: string
-          course?: string
-          location?: string
-          purse?: string | null
-          status?: string
-          current_round?: number | null
-          cut_line?: number | null
-          external_id?: string | null
-          external_system?: string | null
-          updated_at?: string
-          created_at?: string
-          year?: string
-        }
-        Relationships: []
       }
     }
-    Views: {}
-    Functions: {}
-    Enums: {}
+    Views: {
+      [_ in never]: never
+    }
+    Functions: {
+      [_ in never]: never
+    }
+    Enums: {
+      [_ in never]: never
+    }
   }
 } 
