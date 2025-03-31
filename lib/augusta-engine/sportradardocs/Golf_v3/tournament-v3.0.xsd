@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://feed.elasticstats.com/schema/golf/tournament-v3.0.xsd"
+  xmlns:t="http://feed.elasticstats.com/schema/golf/tournament-v3.0.xsd">
+
+  <xs:include schemaLocation="common-v3.0.xsd" />
+
+  <xs:complexType name="tournamentType">
+    <xs:sequence>
+      <xs:element name="summaries" minOccurs="0" maxOccurs="1" type="t:summariesType"/>
+      <xs:group ref="t:summaryGroup"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="t:tournamentBaseAttributes"/>
+  </xs:complexType>
+
+  <xs:complexType name="summariesType">
+    <xs:sequence>
+      <xs:element name="summary" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:group ref="t:summaryGroup"/>
+          <xs:attribute name="part" use="optional" type="xs:integer" />
+          <xs:attribute name="type" use="optional" type="xs:string" />
+          <xs:attributeGroup ref="t:statusBaseAttribute"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:group name="summaryGroup">
+    <xs:sequence>
+      <xs:element name="venue" minOccurs="0" maxOccurs="1" type="t:venueType"/>
+      <xs:element name="seasons" minOccurs="0" maxOccurs="1" type="t:seasonType"/>
+      <xs:element name="rounds" minOccurs="0" maxOccurs="1" type="t:roundsType"/>
+      <xs:choice minOccurs="0" maxOccurs="1">
+        <xs:element name="brackets" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="bracket" type="t:bracketType" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="teams" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="team" type="t:teamType" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="field" minOccurs="0" maxOccurs="1" type="t:fieldType"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:group>
+
+  <xs:complexType name="broadcastType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="network" use="optional"/>
+        <xs:attribute type="xs:string" name="satellite" use="optional"/>
+        <xs:attribute type="xs:string" name="cable" use="optional"/>
+        <xs:attribute type="xs:string" name="radio" use="optional"/>
+        <xs:attribute type="xs:string" name="internet" use="optional"/>
+        <xs:attribute type="xs:dateTime" name="start_at" use="optional"/>
+        <xs:attribute type="xs:dateTime" name="end_at" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="roundsType">
+    <xs:sequence>
+      <xs:element name="round" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="weather" minOccurs="0" maxOccurs="1">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="wind" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                      <xs:attribute name="speed" type="xs:integer" use="optional"/>
+                      <xs:attribute name="direction" type="xs:string" use="optional"/>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+                <xs:attribute name="temp" type="xs:string" use="optional"/>
+                <xs:attribute name="condition" type="xs:string" use="optional"/>
+              </xs:complexType>
+            </xs:element>
+            <xs:element type="t:broadcastType" name="broadcast" maxOccurs="unbounded" minOccurs="0"/>
+          </xs:sequence>
+          <xs:attribute name="id" use="required" type="xs:string"/>
+          <xs:attribute name="number" use="required" type="xs:integer"/>
+          <xs:attributeGroup ref="t:statusBaseAttribute"/>
+          <xs:attribute name="format" use="optional" type="xs:string"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="fieldType">
+    <xs:sequence>
+      <xs:element name="player" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:attributeGroup ref="t:playerBaseAttributes" />
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="seasonType">
+    <xs:sequence>
+      <xs:element name="season" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="tour" minOccurs="0" maxOccurs="1">
+              <xs:complexType>
+                <xs:attributeGroup ref="t:tourAttributes" />
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+          <xs:attributeGroup ref="t:seasonBaseAttributes" />
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="bracketType">
+    <xs:sequence>
+      <xs:element name="player" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:attributeGroup ref="t:playerBaseAttributes" />
+          <xs:attribute name="seed" use="optional" type="xs:integer" />
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attributeGroup ref="t:namedEntityAttributes" />
+  </xs:complexType>
+
+  <xs:complexType name="teamType">
+    <xs:sequence>
+      <xs:element name="player" minOccurs="0" maxOccurs="unbounded" type="t:teamMemberType" />
+      <xs:element name="captain" minOccurs="0" maxOccurs="unbounded" type="t:teamMemberType" />
+      <xs:element name="vice-captain" minOccurs="0" maxOccurs="unbounded" type="t:teamMemberType" />
+      <xs:element name="assistant" minOccurs="0" maxOccurs="unbounded" type="t:teamMemberType" />
+    </xs:sequence>
+    <xs:attributeGroup ref="t:teamBaseAttributes" />
+  </xs:complexType>
+
+  <xs:complexType name="teamMemberType">
+    <xs:attributeGroup ref="t:playerBaseAttributes" />
+    <xs:attribute name="role" use="optional">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="player"/>
+          <xs:enumeration value="captain"/>
+          <xs:enumeration value="vice-captain"/>
+          <xs:enumeration value="assistant"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="captains_pick" use="optional" type="xs:boolean" />
+  </xs:complexType>
+
+  <xs:element name="tournament" type="t:tournamentType" />
+
+</xs:schema>

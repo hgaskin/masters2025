@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:p="http://feed.elasticstats.com/schema/golf/season/participant-v3.0.xsd"
+  targetNamespace="http://feed.elasticstats.com/schema/golf/season/participant-v3.0.xsd"
+  elementFormDefault="qualified">
+
+
+  <xs:include schemaLocation="../common-v3.0.xsd" />
+
+  <xs:complexType name="tourType">
+    <xs:sequence>
+      <xs:element name="season" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="player" type="p:playerProfileType" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+          <xs:attribute name="id" use="required" type="xs:string"/>
+          <xs:attribute name="year" use="required" type="xs:integer"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="alias" use="required" type="xs:string"/>
+    <xs:attribute name="id" use="required" type="xs:string"/>
+    <xs:attribute name="name" use="required" type="xs:string"/>
+    <xs:attribute name="currency" use="optional" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:element name="tour" type="p:tourType" />
+
+  <xs:complexType name="playerProfileType">
+    <xs:attributeGroup ref="p:playerBaseAttributes" />
+
+    <xs:attribute name="birthday" type="xs:string" use="optional"/>
+    <xs:attribute name="birth_place" type="xs:string" use="optional"/>
+    <xs:attribute name="height" type="xs:integer" use="optional"/>
+    <xs:attribute name="weight" type="xs:decimal" use="optional"/>
+    <xs:attribute name="college" type="xs:string" use="optional"/>
+    <xs:attribute name="residence" type="xs:string" use="optional"/>
+    <xs:attribute name="turned_pro" type="xs:integer" use="optional"/>
+
+    <xs:attribute name="club_maker" type="xs:string" use="optional"/>
+    <xs:attribute name="ball_maker" type="xs:string" use="optional"/>
+    <xs:attribute name="handedness" type="xs:string" use="optional"/>
+
+    <xs:attribute name="member" use="required" type="xs:boolean"/>
+    <xs:attribute name="updated" use="required" type="xs:dateTime"/>
+  </xs:complexType>
+
+</xs:schema>

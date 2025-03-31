@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://feed.elasticstats.com/schema/golf/tournament/leaderboard-v3.0.xsd" xmlns:l="http://feed.elasticstats.com/schema/golf/tournament/leaderboard-v3.0.xsd">
+
+  <xs:include schemaLocation="../common-v3.0.xsd" />
+
+  <xs:complexType name="tournamentType">
+    <xs:sequence>
+      <xs:element name="playoff" minOccurs="0" maxOccurs="1" type="l:leaderboardEntryItem" />
+      <xs:element name="leaderboard" minOccurs="0" maxOccurs="1" type="l:leaderboardEntryItem" />
+      <xs:element name="leaderboards" minOccurs="0" maxOccurs="1" type="l:leaderboardsType" />
+    </xs:sequence>
+    <xs:attributeGroup ref="l:tournamentBaseAttributes" />
+    <xs:attribute name="cutline" use="optional" type="xs:integer"/>
+    <xs:attribute name="projected_cutline" use="optional" type="xs:integer"/>
+    <xs:attribute name="cut_round" use="optional" type="xs:integer"/>
+  </xs:complexType>
+
+  <xs:element name="tournament" type="l:tournamentType" />
+
+  <xs:complexType name="playerType">
+    <xs:choice>
+      <xs:element name="rounds" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="round" type="l:roundType" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="match" type="l:matchType" minOccurs="0" maxOccurs="unbounded" />
+    </xs:choice>
+    <xs:attributeGroup ref="l:playerBaseAttributes" />
+
+    <xs:attribute name="status" type="xs:string" use="optional"/>
+
+    <xs:attribute name="score" use="optional" type="xs:integer"/>
+    <xs:attribute name="starting_score" use="optional" type="xs:integer"/>
+    <xs:attribute name="strokes" use="optional" type="xs:integer"/>
+    <xs:attribute name="putts" use="optional" type="xs:integer"/>
+
+    <xs:attribute name="stableford_points" use="optional" type="xs:integer" />
+
+    <xs:attribute name="wins" use="optional" type="xs:integer" />
+    <xs:attribute name="losses" use="optional" type="xs:integer" />
+
+    <xs:attribute name="money" type="xs:double" use="optional"/>
+    <xs:attribute name="points" type="xs:double" use="optional"/>
+    <xs:attribute name="position" use="optional" type="xs:integer"/>
+    <xs:attribute name="tied" type="xs:boolean" use="optional"/>
+  </xs:complexType>
+
+  <xs:complexType name="roundType">
+    <xs:attribute name="sequence" use="required" type="xs:integer"/>
+    <xs:attributeGroup ref="l:holeBaseAttributes"/>
+    <xs:attribute name="stableford_points" use="optional" type="xs:integer" />
+  </xs:complexType>
+
+  <xs:complexType name="matchType">
+    <xs:attributeGroup ref="l:matchBaseAttributes" />
+    <xs:attributeGroup ref="l:performanceAttributes" />
+    <xs:attribute name="score" use="required" type="xs:integer"/>
+    <xs:attribute name="thru" use="optional" type="xs:integer"/>
+    <xs:attribute name="unplayed" use="optional" type="xs:integer"/>
+  </xs:complexType>
+
+  <xs:complexType name="teamType">
+    <xs:choice>
+      <xs:sequence>
+        <xs:element name="players" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="player" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attributeGroup ref="l:playerBaseAttributes" />
+                  <xs:attribute name="money" type="xs:double" use="optional"/>
+                  <xs:attribute name="points" type="xs:double" use="optional"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="rounds" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="round" type="l:roundType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+
+      <xs:element name="player" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:attributeGroup ref="l:playerBaseAttributes" />
+          <xs:attribute name="status" type="xs:string" use="optional"/>
+          <xs:attribute name="wins"   use="optional" type="xs:integer" />
+          <xs:attribute name="losses" use="optional" type="xs:integer" />
+          <xs:attribute name="halves" use="optional" type="xs:integer"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:choice>
+
+    <xs:attributeGroup ref="l:teamBaseAttributes" />
+    <xs:attribute name="score" use="optional" type="xs:double" />
+    <xs:attribute name="status" type="xs:string" use="optional"/>
+
+    <xs:attribute name="strokes" use="optional" type="xs:integer"/>
+    <xs:attribute name="putts" use="optional" type="xs:integer"/>
+    <xs:attribute name="money" type="xs:double" use="optional"/>
+    <xs:attribute name="points" type="xs:double" use="optional"/>
+    <xs:attribute name="position" use="optional" type="xs:integer"/>
+    <xs:attribute name="tied" type="xs:boolean" use="optional"/>
+
+  </xs:complexType>
+
+  <xs:complexType name="leaderboardsType" >
+    <xs:sequence>
+      <xs:element name="part" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="leaderboard" minOccurs="0" maxOccurs="1" type="l:leaderboardEntryItem" />
+          </xs:sequence>
+          <xs:attribute name="part" use="optional" type="xs:integer" />
+          <xs:attribute name="type" use="optional" type="xs:string" />
+          <xs:attributeGroup ref="l:statusBaseAttribute"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="leaderboardEntryItem" >
+    <xs:choice>
+      <xs:element name="player" type="l:playerType" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="team" type="l:teamType" minOccurs="0" maxOccurs="unbounded" />
+    </xs:choice>
+  </xs:complexType>
+
+</xs:schema>

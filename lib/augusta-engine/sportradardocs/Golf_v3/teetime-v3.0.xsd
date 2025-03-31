@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           targetNamespace="http://feed.elasticstats.com/schema/golf/tournament/teetime-v3.0.xsd"
+           xmlns:t="http://feed.elasticstats.com/schema/golf/tournament/teetime-v3.0.xsd">
+
+  <xs:include schemaLocation="../common-v3.0.xsd" />
+
+  <xs:complexType name="tournamentType">
+    <xs:choice>
+      <xs:element name="round" type="t:roundType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="playoff-round" type="t:roundType" minOccurs="0" maxOccurs="1" />
+    </xs:choice>
+    <xs:attributeGroup ref="t:tournamentBaseAttributes" />
+  </xs:complexType>
+
+  <xs:element name="tournament" type="t:tournamentType" />
+
+  <xs:complexType name="roundType">
+    <xs:sequence>
+      <xs:element name="course" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:choice>
+            <xs:element name="pairing" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:choice>
+                  <xs:element name="player" type="t:playerType" minOccurs="0" maxOccurs="unbounded" />
+                  <xs:element name="team" type="t:teamType" minOccurs="0" maxOccurs="unbounded" />
+                </xs:choice>
+                <xs:attribute name="back_nine" use="required" type="xs:boolean"/>
+                <xs:attribute name="tee_time" use="required" type="xs:dateTime"/>
+                <xs:attribute name="id" use="optional" type="xs:string"/>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="match" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="bracket" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                      <xs:attributeGroup ref="t:namedEntityAttributes" />
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="participants" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="participant" minOccurs="0" maxOccurs="unbounded">
+                          <xs:complexType>
+                            <xs:sequence>
+                              <xs:element name="team" type="t:teamType" minOccurs="0" maxOccurs="1" />
+                              <xs:element name="player" type="t:playerType" minOccurs="0" maxOccurs="unbounded" />
+                              <xs:element name="source" type="t:sourceType" minOccurs="0" maxOccurs="1" />
+                            </xs:sequence>
+                            <xs:attribute name="sequence" use="required" type="xs:integer" />
+                            <xs:attribute name="name" use="optional" type="xs:string" />
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+                <xs:attributeGroup ref="t:matchExtendedAttributes" />
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+          <xs:attributeGroup ref="t:courseBaseAttributes"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="id" use="required" type="xs:string"/>
+    <xs:attribute name="number" use="required" type="xs:integer"/>
+    <xs:attribute name="status" use="optional" type="xs:string"/>
+    <xs:attribute name="format" use="optional" type="t:playFormat" />
+  </xs:complexType>
+
+  <xs:complexType name="playerType">
+    <xs:attributeGroup ref="t:playerBaseAttributes"/>
+  </xs:complexType>
+
+  <xs:complexType name="teamType">
+    <xs:sequence>
+      <xs:element name="players" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="player" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:attributeGroup ref="t:playerBaseAttributes" />
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attributeGroup ref="t:teamBaseAttributes" />
+  </xs:complexType>
+
+  <xs:complexType name="sourceType">
+    <xs:attribute name="id" use="required" type="xs:string" />
+    <xs:attribute name="round" use="optional" type="xs:integer" />
+    <xs:attribute name="outcome" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="win" />
+          <xs:enumeration value="loss" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+
+</xs:schema>

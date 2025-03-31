@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:s="http://feed.elasticstats.com/schema/golf/tournament/statistics-v3.0.xsd"
+  targetNamespace="http://feed.elasticstats.com/schema/golf/tournament/statistics-v3.0.xsd" 
+  elementFormDefault="qualified">
+  
+  <xs:include schemaLocation="../common-v3.0.xsd" />
+  
+  <xs:complexType name="tournamentType">
+    <xs:sequence>
+      <xs:element name="statistics" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="round" type="s:roundType" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attributeGroup ref="s:tournamentBaseAttributes" />
+  </xs:complexType>
+  
+  <xs:element name="tournament" type="s:tournamentType" />
+
+  <xs:complexType name="roundType">
+    <xs:sequence>
+      <xs:element name="course" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="hole" type="s:holeStatisticsType" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+          <xs:attributeGroup ref="s:courseBaseAttributes"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="id" use="required" type="xs:string"/>
+    <xs:attribute name="number" use="required" type="xs:integer"/>
+    <xs:attribute name="status" use="optional" type="xs:string"/>
+    <xs:attribute name="format" use="optional" type="s:playFormat" />
+  </xs:complexType>
+
+  <xs:complexType name="holeStatisticsType">
+    <xs:attribute name="sequence" use="required" type="xs:integer"/>
+    <xs:attribute name="number" use="required" type="xs:integer"/>
+    <xs:attribute name="par" use="required" type="xs:integer"/>
+    <xs:attribute name="players" use="required" type="xs:integer"/>
+    <xs:attributeGroup ref="s:scoringBaseAttributes" />
+    <xs:attribute name="gir" use="optional" type="xs:integer"/>
+    <xs:attribute name="putts_avg" use="optional" type="xs:decimal"/>
+    <xs:attribute name="strokes_avg" use="required" type="xs:decimal"/>
+    <xs:attribute name="avg_diff" use="optional" type="xs:decimal" />
+  </xs:complexType>
+  
+</xs:schema>

@@ -1,8 +1,16 @@
 /**
- * Sportradar Golf API Provider Implementation
+ * Sportradar API Provider Implementation
  * 
  * This class implements the GolfAPIProvider interface for Sportradar Golf API
- * https://developer.sportradar.com/golf/reference/golf-overview
+ * https://developer.sportradar.com/docs/read/golf/Golf_v3
+ * 
+ * TODO (Augusta Engine Improvements):
+ * - Fix 404 errors encountered with several endpoints during testing
+ * - Verify all endpoint mappings are correct for Sportradar API structure
+ * - Confirm tournament ID format/lookup for Masters and other tournaments
+ * - Ensure robust fallbacks for all required normalized fields
+ * - Verify response mapping handles all edge cases properly
+ * - Add comprehensive test coverage for all endpoints
  */
 
 import {
@@ -24,7 +32,8 @@ export class SportradarProvider implements GolfAPIProvider {
   
   constructor(apiKey: string) {
     this.apiKey = apiKey;
-    this.baseUrl = 'https://api.sportradar.com/golf/v3';
+    // Try using the .com domain from the documentation
+    this.baseUrl = 'https://api.sportradar.com/golf/trial/v3';
   }
   
   /**
@@ -33,17 +42,19 @@ export class SportradarProvider implements GolfAPIProvider {
   private async makeRequest<T>(endpoint: string, params: Record<string, string> = {}): Promise<T> {
     // Build the URL with query parameters
     const url = new URL(`${this.baseUrl}${endpoint}`);
+    
+    // Add API key as a query parameter - this is the required approach for Sportradar
+    url.searchParams.append('api_key', this.apiKey);
+    
+    // Add other parameters
     Object.entries(params).forEach(([key, value]) => {
       if (value !== undefined) {
         url.searchParams.append(key, value);
       }
     });
     
-    // Add API key to all requests
-    url.searchParams.append('api_key', this.apiKey);
-    
     try {
-      // Make the API request
+      // Make the API request with minimal headers
       const response = await fetch(url.toString(), {
         method: 'GET',
         headers: {
@@ -147,12 +158,14 @@ export class SportradarProvider implements GolfAPIProvider {
    */
   async checkHealth(): Promise<boolean> {
     try {
-      // We'll use a simple check - attempt to get the current year's schedule
-      const currentYear = new Date().getFullYear().toString();
-      await this.makeRequest(`/en/tournaments/schedule/${currentYear}.json`);
+      // Use the simplest possible endpoint for health check
+      const response = await this.makeRequest(`/en/seasons.json`);
+      
+      // If we got a response, the API is healthy
       this.isHealthy = true;
       return true;
     } catch (error) {
+      console.error('Sportradar health check failed:', error);
       this.isHealthy = false;
       return false;
     }
@@ -162,9 +175,32 @@ export class SportradarProvider implements GolfAPIProvider {
    * Map a Sportradar tournament to normalized format
    */
   private mapTournament(tournament: any, year: string): NormalizedTournament {
+    if (!tournament) {
+      throw new Error('Cannot map undefined tournament');
+    }
+    
     // Convert dates to ISO format if needed
-    const startDate = tournament.scheduled?.start_date || tournament.start_date || '';
-    const endDate = tournament.scheduled?.end_date || tournament.end_date || '';
+    let startDate = tournament.scheduled?.start_date || tournament.start_date || '';
+    let endDate = tournament.scheduled?.end_date || tournament.end_date || '';
+    
+    // Ensure consistent date format (YYYY-MM-DD)
+    if (startDate && !startDate.match(/^\d{4}-\d{2}-\d{2}$/)) {
+      try {
+        startDate = new Date(startDate).toISOString().split('T')[0];
+      } catch (e) {
+        console.warn(`Failed to parse start date: ${startDate}`);
+        startDate = '';
+      }
+    }
+    
+    if (endDate && !endDate.match(/^\d{4}-\d{2}-\d{2}$/)) {
+      try {
+        endDate = new Date(endDate).toISOString().split('T')[0];
+      } catch (e) {
+        console.warn(`Failed to parse end date: ${endDate}`);
+        endDate = '';
+      }
+    }
     
     // Map status
     let status = TournamentStatus.UPCOMING;
@@ -175,22 +211,42 @@ export class SportradarProvider implements GolfAPIProvider {
       status = TournamentStatus.IN_PROGRESS;
     } else if (tournament.status === 'cancelled') {
       status = TournamentStatus.CANCELED;
+    } else {
+      // If status is missing, try to infer from dates
+      const now = new Date();
+      const tournamentStart = startDate ? new Date(startDate) : null;
+      const tournamentEnd = endDate ? new Date(endDate) : null;
+      
+      if (tournamentEnd && now > tournamentEnd) {
+        status = TournamentStatus.COMPLETED;
+      } else if (tournamentStart && now >= tournamentStart) {
+        status = TournamentStatus.IN_PROGRESS;
+      }
     }
     
     const course = tournament.venue?.name || tournament.course || '';
     const location = tournament.venue?.location || tournament.location || '';
     
+    // Format purse consistently as string with currency symbol
+    let purse = undefined;
+    if (tournament.purse?.amount) {
+      const amount = tournament.purse.amount;
+      purse = typeof amount === 'number' 
+        ? `$${amount.toLocaleString()}`
+        : `$${amount}`;
+    }
+    
     return {
-      id: tournament.id,
-      name: tournament.name,
+      id: tournament.id || '',
+      name: tournament.name || 'Unknown Tournament',
       startDate,
       endDate,
       course,
       location,
-      purse: tournament.purse?.amount ? `$${tournament.purse.amount}` : undefined,
+      purse,
       status,
-      currentRound: tournament.current_round?.number,
-      externalId: tournament.id,
+      currentRound: tournament.current_round?.number || 0,
+      externalId: tournament.id || '',
       externalSystem: this.name
     };
   }
@@ -199,28 +255,54 @@ export class SportradarProvider implements GolfAPIProvider {
    * Map a Sportradar player to normalized golfer
    */
   private mapGolfer(player: any): NormalizedGolfer {
+    if (!player) {
+      throw new Error('Cannot map undefined player');
+    }
+    
     // Map status
     let status = GolferStatus.ACTIVE;
     
     if (player.status === 'cut') {
       status = GolferStatus.CUT;
-    } else if (player.status === 'withdrawn') {
+    } else if (player.status === 'withdrawn' || player.status === 'wd') {
       status = GolferStatus.WITHDRAWN;
-    } else if (player.status === 'disqualified') {
+    } else if (player.status === 'disqualified' || player.status === 'dq') {
       status = GolferStatus.DISQUALIFIED;
     }
     
-    const name = player.name || `${player.first_name} ${player.last_name}`.trim();
+    // Ensure we have a name by combining first/last if needed
+    let name = player.name;
+    if (!name && (player.first_name || player.last_name)) {
+      name = `${player.first_name || ''} ${player.last_name || ''}`.trim();
+    }
+    
+    // If no name is available, use id with a prefix
+    if (!name) {
+      name = `Player ${player.id || 'Unknown'}`;
+    }
+    
+    // Parse rank as number if it exists
+    let rank = undefined;
+    if (player.world_ranking !== undefined) {
+      rank = typeof player.world_ranking === 'string' 
+        ? parseInt(player.world_ranking, 10) 
+        : player.world_ranking;
+      
+      // Only use valid numbers
+      if (isNaN(rank)) {
+        rank = undefined;
+      }
+    }
     
     return {
-      id: player.id,
+      id: player.id || '',
       name,
-      country: player.country,
-      countryCode: player.country_code,
-      rank: player.world_ranking,
-      avatarUrl: player.image_url,
+      country: player.country || '',
+      countryCode: player.country_code || '',
+      rank,
+      avatarUrl: player.image_url || null,
       status,
-      externalId: player.id,
+      externalId: player.id || '',
       externalSystem: this.name
     };
   }
@@ -229,27 +311,66 @@ export class SportradarProvider implements GolfAPIProvider {
    * Map a Sportradar leaderboard entry to normalized format
    */
   private mapLeaderboardEntry(entry: any): NormalizedLeaderboardEntry {
+    if (!entry) {
+      throw new Error('Cannot map undefined leaderboard entry');
+    }
+    
     // Map status
     let status = GolferStatus.ACTIVE;
     
     if (entry.status === 'cut') {
       status = GolferStatus.CUT;
-    } else if (entry.status === 'withdrawn') {
+    } else if (entry.status === 'withdrawn' || entry.status === 'wd') {
       status = GolferStatus.WITHDRAWN;
-    } else if (entry.status === 'disqualified') {
+    } else if (entry.status === 'disqualified' || entry.status === 'dq') {
       status = GolferStatus.DISQUALIFIED;
     }
     
+    // Ensure position is a number
+    let position = 0;
+    if (entry.position !== undefined) {
+      position = typeof entry.position === 'string'
+        ? parseInt(entry.position.replace(/T$/, ''), 10) // Handle tied positions like "10T"
+        : entry.position;
+      
+      if (isNaN(position)) {
+        position = 0;
+      }
+    }
+    
+    // Normalize score to a number
+    let score = 0;
+    if (entry.total_to_par !== undefined) {
+      score = typeof entry.total_to_par === 'string'
+        ? parseInt(entry.total_to_par, 10)
+        : entry.total_to_par;
+      
+      if (isNaN(score)) {
+        score = 0;
+      }
+    }
+    
+    // Helper to normalize round scores
+    const normalizeRoundScore = (roundScore: any): number | undefined => {
+      if (roundScore === undefined || roundScore === null) return undefined;
+      
+      const score = typeof roundScore === 'string'
+        ? parseInt(roundScore, 10)
+        : roundScore;
+        
+      return isNaN(score) ? undefined : score;
+    };
+    
     return {
-      golferId: entry.player?.id,
-      position: entry.position || 0,
-      score: entry.total_to_par || 0,
-      round1: entry.rounds?.[0]?.score,
-      round2: entry.rounds?.[1]?.score,
-      round3: entry.rounds?.[2]?.score,
-      round4: entry.rounds?.[3]?.score,
-      thru: entry.thru,
-      today: entry.today_to_par,
+      golferId: entry.player?.id || '',
+      position,
+      score,
+      round1: normalizeRoundScore(entry.rounds?.[0]?.score),
+      round2: normalizeRoundScore(entry.rounds?.[1]?.score),
+      round3: normalizeRoundScore(entry.rounds?.[2]?.score),
+      round4: normalizeRoundScore(entry.rounds?.[3]?.score),
+      thru: entry.thru || 0,
+      today: normalizeRoundScore(entry.today_to_par),
       status
     };
   }

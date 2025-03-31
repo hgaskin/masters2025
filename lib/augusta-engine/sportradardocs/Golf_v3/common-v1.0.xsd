@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:complexType name="venueType">
+        <xs:sequence>
+            <xs:element name="course" type="courseType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="id" use="required" type="xs:string"/>
+        <xs:attribute name="name" use="required" type="xs:string"/>
+        <xs:attribute name="city" use="optional" type="xs:string"/>
+        <xs:attribute name="country" use="optional" type="xs:string"/>
+        <xs:attribute name="state" use="optional" type="xs:string"/>
+        <xs:attribute name="zipcode" use="optional" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="courseType">
+        <xs:sequence>
+            <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="holes" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="hole" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:attributeGroup ref="holeLayoutAttributes" />
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attributeGroup ref="courseBaseAttributes"/>
+    </xs:complexType>
+
+    <xs:attributeGroup name="courseBaseAttributes">
+        <xs:attribute name="id" use="required" type="xs:string"/>
+        <xs:attribute name="name" use="required" type="xs:string"/>
+        <xs:attribute name="par" use="optional" type="xs:integer"/>
+        <xs:attribute name="yardage" use="optional" type="xs:integer"/>
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="tournamentBaseAttributes">
+        <xs:attribute name="id" use="required" type="xs:string"/>
+        <xs:attribute name="name" use="required" type="xs:string"/>
+        <xs:attribute name="points" use="optional" type="xs:decimal"/>
+        <xs:attribute name="purse" use="optional" type="xs:decimal"/>
+        <xs:attribute name="winning_share" use="optional" type="xs:decimal"/>
+        <xs:attribute name="currency" use="optional" type="xs:string"/>
+        <xs:attribute name="start_date" use="optional" type="xs:date"/>
+        <xs:attribute name="end_date" use="optional" type="xs:date"/>
+        <xs:attribute name="course_timezone" use="optional" type="xs:string"/>
+        <xs:attribute name="coverage" use="optional">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="full" />
+                    <xs:enumeration value="partial" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="status" use="optional">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="scheduled" />
+                    <xs:enumeration value="inprogress" />
+                    <xs:enumeration value="complete" />
+                    <xs:enumeration value="closed" />
+                    <xs:enumeration value="created" />
+                    <xs:enumeration value="reopened" />
+                    <xs:enumeration value="delayed" />
+                    <xs:enumeration value="cancelled" />
+                    <xs:enumeration value="playoff" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="event_type" use="optional">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="stroke" />
+                    <xs:enumeration value="match" />
+                    <xs:enumeration value="cup" />
+                    <xs:enumeration value="team" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="scoring_system" use="optional" type="xs:string"/>
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="playerBaseAttributes">
+        <xs:attribute name="id" use="required" type="xs:string"/>
+        <xs:attribute name="first_name" use="required" type="xs:string"/>
+        <xs:attribute name="last_name" use="required" type="xs:string"/>
+        <xs:attribute name="country" use="optional" type="xs:string"/>
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="performanceAttributes">
+        <xs:attribute name="birdies" use="optional" type="xs:integer"/>
+        <xs:attribute name="bogeys" use="optional" type="xs:integer"/>
+        <xs:attribute name="double_bogeys" use="optional" type="xs:integer"/>
+        <xs:attribute name="eagles" use="optional" type="xs:integer"/>
+        <xs:attribute name="other_scores" use="optional" type="xs:integer"/>
+        <xs:attribute name="pars" use="optional" type="xs:integer"/>
+        <xs:attribute name="holes_in_one" use="optional" type="xs:integer" />
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="scoringBaseAttributes">
+        <xs:attributeGroup ref="performanceAttributes" />
+        <xs:attribute name="putts" use="optional" type="xs:integer"/>
+        <xs:attribute name="strokes" use="required" type="xs:integer"/>
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="holeBaseAttributes">
+        <xs:attributeGroup ref="scoringBaseAttributes" />
+        <xs:attribute name="score" use="required" type="xs:integer"/>
+        <xs:attribute name="thru" use="optional" type="xs:integer"/>
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="holeLayoutAttributes">
+        <xs:attribute name="number" use="required" type="xs:integer" />
+        <xs:attribute name="par" use="required" type="xs:integer" />
+        <xs:attribute name="yardage" use="required" type="xs:integer" />
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="matchBaseAttributes">
+        <xs:attribute name="id" use="required" type="xs:string"/>
+        <xs:attribute name="sequence" use="optional" type="xs:integer"/>
+        <xs:attribute name="title" use="optional" type="xs:string" />
+        <xs:attribute name="match_type" use="optional">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="regular"/>
+                    <xs:enumeration value="semifinal"/>
+                    <xs:enumeration value="championship"/>
+                    <xs:enumeration value="consolation"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="status" use="optional">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="scheduled" />
+                    <xs:enumeration value="inprogress" />
+                    <xs:enumeration value="complete" />
+                    <xs:enumeration value="closed" />
+                    <xs:enumeration value="delayed" />
+                    <xs:enumeration value="time-tbd" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="matchExtendedAttributes">
+        <xs:attributeGroup ref="matchBaseAttributes" />
+        <xs:attribute name="match_format" use="optional" type="playFormat" />
+        <xs:attribute name="back_nine" use="optional" type="xs:boolean"/>
+        <xs:attribute name="tee_time" use="required" type="xs:dateTime"/>
+    </xs:attributeGroup>
+
+    <xs:simpleType name="playFormat">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="unknown" />
+            <xs:enumeration value="singles" />
+            <xs:enumeration value="fourball" />
+            <xs:enumeration value="foursomes" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:attributeGroup name="namedEntityAttributes">
+        <xs:attribute name="id" use="required" type="xs:string" />
+        <xs:attribute name="name" use="optional" type="xs:string" />
+        <xs:attribute name="desc" use="optional" type="xs:string" />
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="teamBaseAttributes">
+        <xs:attributeGroup ref="namedEntityAttributes" />
+        <xs:attribute name="alias" use="optional" type="xs:string" />
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="tourAttributes">
+        <xs:attribute name="alias"    use="required" type="xs:string"/>
+        <xs:attribute name="id"       use="required" type="xs:string"/>
+        <xs:attribute name="name"     use="required" type="xs:string"/>
+        <xs:attribute name="currency" use="optional" type="xs:string"/>
+    </xs:attributeGroup>
+
+</xs:schema>

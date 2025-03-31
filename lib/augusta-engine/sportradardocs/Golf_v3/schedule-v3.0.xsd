@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:s="http://feed.elasticstats.com/schema/golf/schedule-v3.0.xsd"
+    targetNamespace="http://feed.elasticstats.com/schema/golf/schedule-v3.0.xsd" elementFormDefault="qualified">
+
+  <xs:include schemaLocation="common-v3.0.xsd" />
+
+  <xs:complexType name="tourType">
+    <xs:sequence>
+      <xs:element name="season" type="s:seasonType" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attribute name="alias" use="required" type="xs:string"/>
+    <xs:attribute name="id" use="required"/>
+    <xs:attribute name="name" use="required"/>
+  </xs:complexType>
+
+  <xs:element name="tour" type="s:tourType" />
+
+  <xs:complexType name="seasonType">
+    <xs:sequence>
+      <xs:element name="tournament" type="s:tournamentType" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" use="required" type="xs:string"/>
+    <xs:attribute name="year" use="required" type="xs:integer"/>
+  </xs:complexType>
+
+  <xs:complexType name="tournamentType">
+    <xs:sequence>
+      <xs:element name="defending_champ" type="s:winnerList" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="winner" type="s:winnerList" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="venue" type="s:venueType" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="s:tournamentBaseAttributes" />
+    <xs:attribute name="network" type="xs:string" use="optional"/>
+    <xs:attribute name="total_rounds" type="xs:integer" use="optional"/>
+    <xs:attribute name="cutline" type="xs:integer" use="optional"/>
+    <xs:attribute name="projected_cutline" type="xs:integer" use="optional"/>
+    <xs:attribute name="cut_round" type="xs:integer" use="optional"/>
+  </xs:complexType>
+
+  <xs:complexType name="playerProfileType">
+    <xs:attributeGroup ref="s:playerBaseAttributes" />
+
+    <xs:attribute name="birthday" type="xs:string" use="optional"/>
+    <xs:attribute name="birth_place" type="xs:string" use="optional"/>
+    <xs:attribute name="height" type="xs:integer" use="optional"/>
+    <xs:attribute name="weight" type="xs:decimal" use="optional"/>
+    <xs:attribute name="college" type="xs:string" use="optional"/>
+    <xs:attribute name="residence" type="xs:string" use="optional"/>
+    <xs:attribute name="turned_pro" type="xs:integer" use="optional"/>
+    <xs:attribute name="handedness" type="xs:string" use="optional"/>
+  </xs:complexType>
+
+
+  <xs:complexType name="winnerList">
+    <xs:sequence>
+      <xs:element name="player" type="s:playerProfileType" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:s="http://feed.elasticstats.com/schema/golf/tournament/scorecard-v3.0.xsd" targetNamespace="http://feed.elasticstats.com/schema/golf/tournament/scorecard-v3.0.xsd" elementFormDefault="qualified">
+
+  <xs:include schemaLocation="../common-v3.0.xsd" />
+
+  <xs:complexType name="tournamentType">
+    <xs:choice>
+      <xs:element name="round" type="s:roundType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="playoff-round" type="s:roundType" minOccurs="0" maxOccurs="1" />
+    </xs:choice>
+    <xs:attributeGroup ref="s:tournamentBaseAttributes" />
+  </xs:complexType>
+
+  <xs:element name="tournament" type="s:tournamentType"/>
+
+  <xs:complexType name="roundType">
+    <xs:choice>
+      <xs:element name="player" type="s:playerType" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="team" type="s:teamType" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="match" type="s:matchType" minOccurs="0" maxOccurs="unbounded" />
+    </xs:choice>
+    <xs:attribute name="id" use="required" type="xs:string"/>
+    <xs:attribute name="number" use="required" type="xs:integer"/>
+    <xs:attribute name="status" use="optional" type="xs:string"/>
+    <xs:attribute name="format" use="optional" type="s:playFormat" />
+  </xs:complexType>
+
+  <xs:complexType name="strokeType">
+    <xs:attributeGroup ref="s:holeBaseAttributes"/>
+
+    <xs:attribute name="status" type="xs:string" use="optional"/>
+    <xs:attribute name="stableford_points" type="xs:integer" use="optional" />
+    <xs:attribute name="starting_hole" type="xs:integer" use="optional" />
+  </xs:complexType>
+
+  <xs:complexType name="playerType">
+    <xs:complexContent>
+      <xs:extension base="s:strokeType">
+        <xs:sequence>
+          <xs:element name="course" type="s:courseType" minOccurs="0" maxOccurs="1"/>
+          <xs:element name="scores" type="s:holeScoreType" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="created_at" use="optional" type="xs:string"/>
+        <xs:attribute name="updated_at" use="optional" type="xs:string"/>
+        <xs:attributeGroup ref="s:playerBaseAttributes"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="teamType">
+    <xs:complexContent>
+      <xs:extension base="s:strokeType">
+        <xs:sequence>
+          <xs:element name="players" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="player" minOccurs="0" maxOccurs="unbounded">
+                  <xs:complexType>
+                    <xs:attributeGroup ref="s:playerBaseAttributes" />
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="course" type="s:courseType" minOccurs="0" maxOccurs="1"/>
+          <xs:element name="scores" type="s:holeScoreType" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="s:teamBaseAttributes"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="matchType">
+    <xs:sequence>
+      <xs:element name="course" type="s:courseType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="scores" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:choice>
+            <xs:element name="player" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="hole" type="s:matchHoleScoreType" minOccurs="0" maxOccurs="unbounded" />
+                </xs:sequence>
+                <xs:attributeGroup ref="s:matchParticipantBaseAttributes" />
+                <xs:attributeGroup ref="s:playerBaseAttributes" />
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="team" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="players" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="player" minOccurs="0" maxOccurs="unbounded">
+                          <xs:complexType>
+                            <xs:attributeGroup ref="s:playerBaseAttributes" />
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="hole" type="s:matchHoleScoreType" minOccurs="0" maxOccurs="unbounded" />
+                </xs:sequence>
+                <xs:attributeGroup ref="s:matchParticipantBaseAttributes" />
+                <xs:attributeGroup ref="s:teamBaseAttributes" />
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attributeGroup ref="s:matchExtendedAttributes" />
+  </xs:complexType>
+
+  <xs:attributeGroup name="matchParticipantBaseAttributes">
+    <xs:attribute name="sequence" use="optional" type="xs:integer" />
+    <xs:attribute name="score" use="required" type="xs:integer"/>
+    <xs:attribute name="thru" use="optional" type="xs:integer"/>
+    <xs:attribute name="unplayed" use="optional" type="xs:integer"/>
+  </xs:attributeGroup>
+
+  <xs:complexType name="holeScoreType">
+    <xs:sequence>
+      <xs:element name="hole" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:attributeGroup ref="s:holeLayoutAttributes"/>
+          <xs:attribute name="putts" use="optional" type="xs:integer"/>
+          <xs:attribute name="strokes" use="required" type="xs:integer"/>
+          <xs:attribute name="stableford_points" type="xs:integer" use="optional" />
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="matchHoleScoreType">
+    <xs:sequence>
+      <xs:element name="player" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:attributeGroup ref="s:playerBaseAttributes" />
+          <xs:attribute name="strokes" use="optional" type="xs:integer" />
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="sequence" use="required" type="xs:integer" />
+    <xs:attributeGroup ref="s:holeLayoutAttributes"/>
+    <xs:attribute name="strokes" use="optional" type="xs:integer"/>
+    <xs:attribute name="outcome" use="optional">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="win" />
+          <xs:enumeration value="loss" />
+          <xs:enumeration value="halved" />
+          <xs:enumeration value="conceded" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="match_score" use="optional" type="xs:integer" />
+  </xs:complexType>
+
+</xs:schema>

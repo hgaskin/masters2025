@@ -231,3 +231,28 @@ Future plans include exposing the AUGUSTA ENGINE capabilities via API:
 - RESTful endpoints for third-party consumption
 - Webhook support for real-time data updates
 - Export functionality for external analysis tools 
+
+## Known Issues & TODOs
+
+### Provider Status
+
+1. **SlashGolf Provider**
+   - ✅ Confirmed working endpoints: schedule, tournament, leaderboard, scorecard
+   - ✅ Successfully mapped to all normalized data structures
+   - ✅ Identified working tournament IDs (Masters is "014")
+   - ✅ Implementation includes fallbacks for missing fields
+
+2. **Sportradar Provider**
+   - ✅ Confirmed working: /en/seasons.json endpoint
+   - ❌ Several other endpoints returned 404 errors in testing
+   - ❓ Requires additional investigation for endpoint structure
+   - TODO: Fix endpoint mappings and verify data normalization
+   - TODO: Identify correct tournament IDs for major tournaments
+
+### Priority Improvements
+
+1. Resolve Sportradar API 404 errors to ensure reliable fallback
+2. Add comprehensive test suite for all providers and endpoints
+3. Enhance error handling with more specific error types
+4. Create validation functions to ensure normalized data integrity
+5. Document API rate limits and implement appropriate throttling 

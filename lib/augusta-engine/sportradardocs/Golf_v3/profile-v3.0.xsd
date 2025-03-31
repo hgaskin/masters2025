@@ -1,0 +1,120 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://feed.elasticstats.com/schema/golf/player/profile-v3.0.xsd"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:prof="http://feed.elasticstats.com/schema/golf/player/profile-v3.0.xsd">
+
+  <xs:include schemaLocation="../common-v3.0.xsd"/>
+  <xs:element name="profile" type="prof:profileType"/>
+
+  <xs:complexType name="tourType">
+    <xs:attributeGroup ref="prof:tourAttributes"/>
+  </xs:complexType>
+  <xs:complexType name="seasonType">
+    <xs:sequence>
+      <xs:element type="prof:tourType" name="tour"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="xs:short" name="year" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="seasonsType">
+    <xs:sequence>
+      <xs:element type="prof:seasonType" name="season" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="roundType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attributeGroup ref="prof:holeBaseAttributes"/>
+        <xs:attribute type="xs:integer" name="stableford_points" use="optional"/>
+        <xs:attribute type="xs:integer" name="sequence" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="roundsType">
+    <xs:sequence>
+      <xs:element type="prof:roundType" name="round" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="playerType">
+    <xs:sequence>
+      <xs:element type="prof:roundsType" name="rounds" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attribute type="xs:short" name="position" use="optional"/>
+    <xs:attribute type="xs:string" name="tied" use="optional"/>
+    <xs:attribute type="xs:float" name="money" use="optional"/>
+    <xs:attribute type="xs:float" name="points" use="optional"/>
+    <xs:attribute type="xs:integer" name="score" use="optional"/>
+    <xs:attribute type="xs:short" name="strokes" use="optional"/>
+    <xs:attribute type="xs:string" name="status" use="optional"/>
+    <xs:attribute type="xs:integer" name="starting_score" use="optional"/>
+    <xs:attribute type="xs:integer" name="stableford_points" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="leaderboardType">
+    <xs:sequence>
+      <xs:element type="prof:playerType" name="player"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tournamentType">
+    <xs:sequence>
+      <xs:element type="prof:seasonsType" name="seasons"/>
+      <xs:element type="prof:leaderboardType" name="leaderboard"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="prof:tournamentBaseAttributes"/>
+    <xs:attribute type="xs:string" name="network" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="tournamentsType">
+    <xs:sequence>
+      <xs:element type="prof:tournamentType" name="tournament" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="statisticsType">
+    <xs:sequence>
+      <xs:element type="prof:seasonType" name="season"/>
+    </xs:sequence>
+    <xs:attribute type="xs:integer" name="events_played" use="optional"/>
+    <xs:attribute type="xs:integer" name="first_place" use="optional"/>
+    <xs:attribute type="xs:integer" name="second_place" use="optional"/>
+    <xs:attribute type="xs:integer" name="third_place" use="optional"/>
+    <xs:attribute type="xs:integer" name="top_10" use="optional"/>
+    <xs:attribute type="xs:integer" name="top_25" use="optional"/>
+    <xs:attribute type="xs:integer" name="cuts" use="optional"/>
+    <xs:attribute type="xs:integer" name="cuts_made" use="optional"/>
+    <xs:attribute type="xs:float" name="points" use="optional"/>
+    <xs:attribute type="xs:integer" name="points_rank" use="optional"/>
+    <xs:attribute type="xs:float" name="earnings" use="optional"/>
+    <xs:attribute type="xs:integer" name="earnings_rank" use="optional"/>
+    <xs:attribute type="xs:integer" name="withdrawals" use="optional"/>
+    <xs:attribute type="xs:float" name="drive_avg" use="optional"/>
+    <xs:attribute type="xs:float" name="drive_acc" use="optional"/>
+    <xs:attribute type="xs:float" name="gir_pct" use="optional"/>
+    <xs:attribute type="xs:integer" name="world_rank" use="optional"/>
+    <xs:attribute type="xs:float" name="strokes_gained" use="optional"/>
+    <xs:attribute type="xs:string" name="hole_proximity_avg" use="optional"/>
+    <xs:attribute type="xs:float" name="scrambling_pct" use="optional"/>
+    <xs:attribute type="xs:float" name="scoring_avg" use="optional"/>
+    <xs:attribute type="xs:float" name="putt_avg" use="optional"/>
+    <xs:attribute type="xs:float" name="sand_saves_pct" use="optional"/>
+    <xs:attribute type="xs:float" name="birdies_per_round" use="optional"/>
+    <xs:attribute type="xs:float" name="holes_per_eagle" use="optional"/>
+    <xs:attribute type="xs:float" name="strokes_gained_tee_green" use="optional"/>
+    <xs:attribute type="xs:float" name="strokes_gained_total" use="optional"/>
+    <xs:attribute type="xs:short" name="total_driving" use="optional"/>
+    <xs:attribute type="xs:integer" name="all_around_ranking" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="profileType">
+    <xs:sequence>
+      <xs:element type="prof:tournamentsType" name="previous_tournaments" minOccurs="0" maxOccurs="1"/>
+      <xs:element type="prof:statisticsType" name="statistics" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="prof:playerBaseAttributes"/>
+    <xs:attribute type="xs:integer" name="height"/>
+    <xs:attribute type="xs:short" name="weight"/>
+    <xs:attribute type="xs:date" name="birthday"/>
+    <xs:attribute type="xs:string" name="residence"/>
+    <xs:attribute type="xs:string" name="birth_place"/>
+    <xs:attribute type="xs:string" name="college"/>
+    <xs:attribute type="xs:string" name="gender"/>
+    <xs:attribute type="xs:short" name="turned_pro"/>
+    <xs:attribute type="xs:string" name="handedness" use="optional"/>
+  </xs:complexType>
+</xs:schema>

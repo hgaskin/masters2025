@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified"
+  targetNamespace="http://feed.elasticstats.com/schema/golf/player/rankings-v3.0.xsd"
+  xmlns:r="http://feed.elasticstats.com/schema/golf/player/rankings-v3.0.xsd">
+
+  <xs:include schemaLocation="../common-v3.0.xsd" />
+
+  <xs:complexType name="rankingType">
+    <xs:sequence>
+      <xs:sequence minOccurs="0">
+        <xs:element name="tour" minOccurs="0" maxOccurs="1" >
+          <xs:complexType>
+            <xs:attributeGroup ref="r:tourAttributes" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="season" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:attribute name="id"   use="required" type="xs:string"/>
+            <xs:attribute name="year" use="required" type="xs:integer"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:choice>
+
+        <xs:element name="wgr" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="player" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:complexContent>
+                    <xs:extension base="r:basePlayerRankType">
+                      <xs:sequence>
+                        <xs:element name="statistics" minOccurs="0" maxOccurs="1">
+                          <xs:complexType>
+                            <xs:attribute name="avg_points"    use="optional" type="xs:decimal"/>
+                            <xs:attribute name="events_played" use="optional" type="xs:integer"/>
+                            <xs:attribute name="points"        use="optional" type="xs:integer"/>
+                            <xs:attribute name="points_gained" use="optional" type="xs:integer"/>
+                            <xs:attribute name="points_lost"   use="optional" type="xs:integer"/>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:extension>
+                  </xs:complexContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="season" type="xs:integer" use="optional" />
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="pc_us" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="player" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:complexContent>
+                    <xs:extension base="r:basePlayerRankType">
+                      <xs:sequence>
+                        <xs:element name="statistics" minOccurs="0" maxOccurs="1">
+                          <xs:complexType>
+                            <xs:attribute name="points"        use="optional" type="xs:integer"/>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:extension>
+                  </xs:complexContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="season" type="xs:integer" use="optional" />
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="pc_int" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="player" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:complexContent>
+                    <xs:extension base="r:basePlayerRankType">
+                      <xs:sequence>
+                        <xs:element name="statistics" minOccurs="0" maxOccurs="1">
+                          <xs:complexType>
+                            <xs:attribute name="points"        use="optional" type="xs:decimal"/>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:extension>
+                  </xs:complexContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="season" type="xs:integer" use="optional" />
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="rc_us" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="player" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:complexContent>
+                    <xs:extension base="r:basePlayerRankType">
+                      <xs:sequence>
+                        <xs:element name="statistics" minOccurs="0" maxOccurs="1">
+                          <xs:complexType>
+                            <xs:attribute name="points"        use="optional" type="xs:decimal"/>
+                            <xs:attribute name="events_played" use="optional" type="xs:integer"/>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:extension>
+                  </xs:complexContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="season" type="xs:integer" use="optional" />
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="rc_world" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="player" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:complexContent>
+                    <xs:extension base="r:basePlayerRankType">
+                      <xs:sequence>
+                        <xs:element name="statistics" minOccurs="0" maxOccurs="1">
+                          <xs:complexType>
+                            <xs:attribute name="points"        use="optional" type="xs:decimal"/>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:extension>
+                  </xs:complexContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="season" type="xs:integer" use="optional" />
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="rc_euro" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="player" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:complexContent>
+                    <xs:extension base="r:basePlayerRankType">
+                      <xs:sequence>
+                        <xs:element name="statistics" minOccurs="0" maxOccurs="1">
+                          <xs:complexType>
+                            <xs:attribute name="points"        use="optional" type="xs:decimal"/>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:extension>
+                  </xs:complexContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="season" type="xs:integer" use="optional" />
+          </xs:complexType>
+        </xs:element>
+
+      </xs:choice>
+    </xs:sequence>
+
+    <xs:attribute name="alias"  use="optional" type="xs:string"/>
+    <xs:attribute name="id"     use="required" type="xs:string"/>
+    <xs:attribute name="name"   use="required" type="xs:string"/>
+    <xs:attribute name="status" use="required" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:element name="ranking"  type="r:rankingType"/>
+
+  <xs:attributeGroup name="rankingAttributes">
+    <xs:attribute name="rank"       use="required" type="xs:integer"/>
+    <xs:attribute name="prior_rank" use="optional" type="xs:integer" />
+    <xs:attribute name="tied"       use="optional" type="xs:boolean"/>
+  </xs:attributeGroup>
+
+  <xs:complexType name="basePlayerRankType">
+      <xs:attributeGroup ref="r:playerBaseAttributes" />
+      <xs:attributeGroup ref="r:rankingAttributes" />
+  </xs:complexType>
+
+</xs:schema>

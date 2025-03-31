@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:c="http://feed.elasticstats.com/schema/golf/changelog-v1.0.xsd"
+           targetNamespace="http://feed.elasticstats.com/schema/golf/changelog-v1.0.xsd"
+           elementFormDefault="qualified">
+
+  <xs:complexType name="tourType">
+    <xs:sequence>
+      <xs:element name="changelog" minOccurs="1" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="players" minOccurs="0" maxOccurs="1" type="c:playerReferenceListType" />
+            <xs:element name="participants" minOccurs="0" maxOccurs="1" type="c:playerReferenceListType"/>
+            <xs:element name="statistics" minOccurs="0" maxOccurs="1" type="c:playerReferenceListType"/>
+            <xs:element name="tournaments" minOccurs="0" maxOccurs="1">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="tournament" minOccurs="0" maxOccurs="unbounded" type="c:tournamentType"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+          <xs:attribute name="end_time" use="required" type="xs:dateTime"/>
+          <xs:attribute name="start_time" use="required" type="xs:dateTime"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attributeGroup ref="c:entityAttribute" />
+    <xs:attribute name="alias" use="required" type="xs:string"/>
+    <xs:attribute name="name" use="optional" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:element name="tour" type="c:tourType" />
+  
+  <xs:complexType name="tournamentType">
+    <xs:sequence>
+      <xs:element name="season" minOccurs="0" maxOccurs="1" type="c:seasonReferenceType"/>
+      <xs:element name="field"  minOccurs="0" maxOccurs="1" type="c:playerReferenceListType"/>
+      <xs:element name="rounds" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="round" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:choice>
+                  <xs:element name="match" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                      <xs:attributeGroup ref="c:pairingReferenceAttributes" />
+                      <xs:attribute name="match_format" use="optional" type="xs:string"/>
+                      <xs:attribute name="title" use="optional" type="xs:string"/>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="pairing" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="player" minOccurs="0" maxOccurs="unbounded">
+                          <xs:complexType>
+                            <xs:attributeGroup ref="c:entityAttribute" />
+                            <xs:attribute name="full_name" use="optional" type="xs:string"/>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                      <xs:attributeGroup ref="c:pairingReferenceAttributes" />
+                    </xs:complexType>
+                  </xs:element>
+                </xs:choice>
+                <xs:attributeGroup ref="c:entityAttribute" />
+                <xs:attribute name="number" use="required" type="xs:integer"/>
+                <xs:attribute name="status" use="optional" type="xs:string"/>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="results" minOccurs="0" maxOccurs="1" type="c:playerReferenceListType"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="c:modifiedEntityAttributes" />
+    <xs:attribute name="event_type" use="optional" type="xs:string"/>
+    <xs:attribute name="currency" use="optional" type="xs:string"/>
+    <xs:attribute name="course_timezone" use="optional" type="xs:string"/>
+    <xs:attribute name="name" use="optional" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="playerReferenceListType">
+    <xs:sequence>
+      <xs:element name="player" minOccurs="0" maxOccurs="unbounded" type="c:playerReferenceType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="playerReferenceType">
+    <xs:sequence>
+      <xs:element name="season"  minOccurs="0" maxOccurs="1" type="c:seasonReferenceType"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="c:modifiedEntityAttributes" />
+    <xs:attribute name="full_name" use="optional" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:attributeGroup name="pairingReferenceAttributes">
+    <xs:attributeGroup ref="c:entityAttribute" />
+    <xs:attribute name="sequence" use="optional" type="xs:integer" />
+    <xs:attribute name="last_modified" use="required" type="xs:dateTime"/>
+    <xs:attribute name="tee_time" use="optional" type="xs:dateTime"/>
+  </xs:attributeGroup>
+
+  <xs:complexType name="seasonReferenceType">
+    <xs:attributeGroup ref="c:entityAttribute" />
+    <xs:attribute name="year" use="required" type="xs:integer"/>
+  </xs:complexType>
+  
+  <xs:attributeGroup name="entityAttribute">
+    <xs:attribute name="id" use="required" type="xs:string"/>  
+  </xs:attributeGroup>
+  
+  <xs:attributeGroup name="modifiedEntityAttributes">
+    <xs:attributeGroup ref="c:entityAttribute" />
+    <xs:attribute name="last_modified" use="required" type="xs:dateTime"/>
+  </xs:attributeGroup>
+</xs:schema>
