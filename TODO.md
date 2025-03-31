@@ -57,6 +57,27 @@ for local dev im using cloudflare tunnel: cloudflared tunnel --url http://localh
 - [ ] Add manual payment confirmation for admin
 - [ ] Show payment status on entries
 
+### AUGUSTA ENGINE Testing & Data Population
+- [x] Create test script to verify API keys and provider connectivity
+- [x] Create interactive CLI tool for data management:
+  - [x] Implement save/preview/normalize/insert workflow
+  - [x] Add results directory for storing API responses
+  - [x] Add interactive prompts for data handling
+- [~] Implement data fetching for 2024 Masters Tournament:
+  - [x] Set up tournament details fetching
+  - [x] Set up golfer list fetching
+  - [ ] Implement round scores fetching
+  - [x] Set up leaderboard fetching
+- [ ] Create data validation utilities to verify data integrity
+- [ ] Implement example pool creation with 2024 data:
+  - [ ] Create test pool with standard rules
+  - [ ] Generate golfer groups based on 2024 rankings
+  - [ ] Create sample entries with picks
+  - [ ] Verify scoring calculations
+- [ ] Add comprehensive logging for all sync operations
+- [ ] Create admin dashboard for monitoring sync status
+- [ ] Document the complete data flow with examples
+
 ## 🟠 Medium Priority Tasks
 
 ### User Dashboard
@@ -144,6 +165,8 @@ for local dev im using cloudflare tunnel: cloudflared tunnel --url http://localh
 - We'll implement a hybrid API approach using both Sportradar and SlashGolf with fallback logic 
 
 ## 🔄 Recently Completed Tasks (FYI we are in the year 2025)
+- [x] (2025-04-02) Implemented comprehensive database schema with constraints
+- [x] (2025-04-02) Updated Augusta Engine for new schema support
 - [x] (2025-04-01) Designed improved database schema for multi-tournament support
 - [x] (2025-04-01) Created database schema documentation
 - [x] (2025-04-01) Updated sync endpoints for the new schema
