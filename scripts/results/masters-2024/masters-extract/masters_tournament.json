@@ -1,0 +1,27 @@
+{
+  "tournId": "014",
+  "name": "Masters Tournament",
+  "date": {
+    "start": {
+      "$date": {
+        "$numberLong": "1712793600000"
+      }
+    },
+    "end": {
+      "$date": {
+        "$numberLong": "1713052800000"
+      }
+    },
+    "weekNumber": "15"
+  },
+  "format": "stroke",
+  "purse": {
+    "$numberInt": "20000000"
+  },
+  "winnersShare": {
+    "$numberInt": "3600000"
+  },
+  "fedexCupPoints": {
+    "$numberInt": "750"
+  }
+}

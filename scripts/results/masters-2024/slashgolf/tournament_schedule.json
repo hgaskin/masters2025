@@ -1,0 +1,785 @@
+{
+  "season": "2024",
+  "tournaments": [
+    {
+      "id": "016",
+      "name": "The Sentry",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "20000000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "016",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "006",
+      "name": "Sony Open in Hawaii",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "8300000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "006",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "002",
+      "name": "The American Express",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "8400000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "002",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "004",
+      "name": "Farmers Insurance Open",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "9000000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "004",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "005",
+      "name": "AT&T Pebble Beach Pro-Am",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "20000000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "005",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "003",
+      "name": "WM Phoenix Open",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "8800000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "003",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "007",
+      "name": "The Genesis Invitational",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "20000000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "007",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "540",
+      "name": "Mexico Open at Vidanta",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "8100000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "540",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "010",
+      "name": "Cognizant Classic in The Palm Beaches",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "9000000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "010",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "009",
+      "name": "Arnold Palmer Invitational presented by Mastercard",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "20000000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "009",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "483",
+      "name": "Puerto Rico Open",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "4000000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "483",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "011",
+      "name": "THE PLAYERS Championship",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "25000000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "011",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "475",
+      "name": "Valspar Championship",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "8400000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "475",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "020",
+      "name": "Texas Children's Houston Open",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "9100000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "020",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "041",
+      "name": "Valero Texas Open",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "9200000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "041",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "014",
+      "name": "Masters Tournament",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "20000000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "014",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "012",
+      "name": "RBC Heritage",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "20000000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "012",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "522",
+      "name": "Corales Puntacana Championship",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "4000000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "522",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "018",
+      "name": "Zurich Classic of New Orleans",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "8900000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "018",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "019",
+      "name": "THE CJ CUP Byron Nelson",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "9500000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "019",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "480",
+      "name": "Wells Fargo Championship",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "20000000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "480",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "553",
+      "name": "Myrtle Beach Classic",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "4000000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "553",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "033",
+      "name": "PGA Championship",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "0"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "033",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "021",
+      "name": "Charles Schwab Challenge",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "9100000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "021",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "032",
+      "name": "RBC Canadian Open",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "9400000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "032",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "023",
+      "name": "the Memorial Tournament presented by Workday",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "20000000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "023",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "026",
+      "name": "U.S. Open",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "0"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "026",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "034",
+      "name": "Travelers Championship",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "20000000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "034",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "524",
+      "name": "Rocket Mortgage Classic",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "9200000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "524",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "030",
+      "name": "John Deere Classic",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "8000000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "030",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "541",
+      "name": "Genesis Scottish Open",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "9000000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "541",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "518",
+      "name": "ISCO Championship",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "4000000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "518",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "100",
+      "name": "The Open Championship",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "17000000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "100",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "472",
+      "name": "Barracuda Championship",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "4000000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "472",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "525",
+      "name": "3M Open",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "8100000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "525",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "519",
+      "name": "Men’s Olympic Golf Competition",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "0"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "519",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "013",
+      "name": "Wyndham Championship",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "7900000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "013",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "027",
+      "name": "FedEx St. Jude Championship",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "20000000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "027",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "028",
+      "name": "BMW Championship",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "20000000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "028",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "060",
+      "name": "TOUR Championship",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "0"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "060",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "464",
+      "name": "Procore Championship",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "6000000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "464",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "500",
+      "name": "Presidents Cup",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "0"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "500",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "054",
+      "name": "Sanderson Farms Championship",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "0"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "054",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "554",
+      "name": "Black Desert Championship",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "0"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "554",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "047",
+      "name": "Shriners Children's Open",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "0"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "047",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "527",
+      "name": "ZOZO CHAMPIONSHIP",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "0"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "527",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "457",
+      "name": "World Wide Technology Championship",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "0"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "457",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "528",
+      "name": "Butterfield Bermuda Championship",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "0"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "528",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "493",
+      "name": "The RSM Classic",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "0"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "493",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "478",
+      "name": "Hero World Challenge",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "5000000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "478",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "551",
+      "name": "Grant Thornton Invitational",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "4000000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "551",
+      "externalSystem": "SlashGolf"
+    },
+    {
+      "id": "088",
+      "name": "PGA TOUR Q-School presented by Korn Ferry",
+      "startDate": "",
+      "endDate": "",
+      "course": "",
+      "location": "",
+      "purse": {
+        "$numberInt": "510000"
+      },
+      "status": "upcoming",
+      "currentRound": 0,
+      "externalId": "088",
+      "externalSystem": "SlashGolf"
+    }
+  ]
+}

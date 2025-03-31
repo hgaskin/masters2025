@@ -1,0 +1,946 @@
+[
+  {
+    "_id": {
+      "$oid": "661924943fecb4aa89e5565e"
+    },
+    "orgId": "1",
+    "year": "2024",
+    "tournId": "014",
+    "courseId": "014",
+    "playerId": "50525",
+    "lastName": "Morikawa",
+    "firstName": "Collin",
+    "roundId": {
+      "$numberInt": "1"
+    },
+    "startingHole": {
+      "$numberInt": "1"
+    },
+    "roundComplete": true,
+    "lastUpdated": {
+      "$date": {
+        "$numberLong": "1712930646000"
+      }
+    },
+    "currentRoundScore": "-1",
+    "currentHole": {
+      "$numberInt": "1"
+    },
+    "holes": {
+      "1": {
+        "holeId": {
+          "$numberInt": "1"
+        },
+        "holeScore": {
+          "$numberInt": "5"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "2": {
+        "holeId": {
+          "$numberInt": "2"
+        },
+        "holeScore": {
+          "$numberInt": "5"
+        },
+        "par": {
+          "$numberInt": "5"
+        }
+      },
+      "3": {
+        "holeId": {
+          "$numberInt": "3"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "4": {
+        "holeId": {
+          "$numberInt": "4"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "3"
+        }
+      },
+      "5": {
+        "holeId": {
+          "$numberInt": "5"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "6": {
+        "holeId": {
+          "$numberInt": "6"
+        },
+        "holeScore": {
+          "$numberInt": "3"
+        },
+        "par": {
+          "$numberInt": "3"
+        }
+      },
+      "7": {
+        "holeId": {
+          "$numberInt": "7"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "8": {
+        "holeId": {
+          "$numberInt": "8"
+        },
+        "holeScore": {
+          "$numberInt": "5"
+        },
+        "par": {
+          "$numberInt": "5"
+        }
+      },
+      "9": {
+        "holeId": {
+          "$numberInt": "9"
+        },
+        "holeScore": {
+          "$numberInt": "3"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "10": {
+        "holeId": {
+          "$numberInt": "10"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "11": {
+        "holeId": {
+          "$numberInt": "11"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "12": {
+        "holeId": {
+          "$numberInt": "12"
+        },
+        "holeScore": {
+          "$numberInt": "3"
+        },
+        "par": {
+          "$numberInt": "3"
+        }
+      },
+      "13": {
+        "holeId": {
+          "$numberInt": "13"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "5"
+        }
+      },
+      "14": {
+        "holeId": {
+          "$numberInt": "14"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "15": {
+        "holeId": {
+          "$numberInt": "15"
+        },
+        "holeScore": {
+          "$numberInt": "5"
+        },
+        "par": {
+          "$numberInt": "5"
+        }
+      },
+      "16": {
+        "holeId": {
+          "$numberInt": "16"
+        },
+        "holeScore": {
+          "$numberInt": "3"
+        },
+        "par": {
+          "$numberInt": "3"
+        }
+      },
+      "17": {
+        "holeId": {
+          "$numberInt": "17"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "18": {
+        "holeId": {
+          "$numberInt": "18"
+        },
+        "holeScore": {
+          "$numberInt": "3"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      }
+    },
+    "totalShots": {
+      "$numberInt": "71"
+    },
+    "timestamp": {
+      "$date": {
+        "$numberLong": "1712930674608"
+      }
+    }
+  },
+  {
+    "_id": {
+      "$oid": "661941ea499881e194f81ed3"
+    },
+    "orgId": "1",
+    "year": "2024",
+    "tournId": "014",
+    "courseId": "014",
+    "playerId": "50525",
+    "lastName": "Morikawa",
+    "firstName": "Collin",
+    "roundId": {
+      "$numberInt": "2"
+    },
+    "startingHole": {
+      "$numberInt": "1"
+    },
+    "roundComplete": true,
+    "lastUpdated": {
+      "$date": {
+        "$numberLong": "1712953596000"
+      }
+    },
+    "currentRoundScore": "-2",
+    "currentHole": {
+      "$numberInt": "18"
+    },
+    "holes": {
+      "1": {
+        "holeId": {
+          "$numberInt": "1"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "2": {
+        "holeId": {
+          "$numberInt": "2"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "5"
+        }
+      },
+      "3": {
+        "holeId": {
+          "$numberInt": "3"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "4": {
+        "holeId": {
+          "$numberInt": "4"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "3"
+        }
+      },
+      "5": {
+        "holeId": {
+          "$numberInt": "5"
+        },
+        "holeScore": {
+          "$numberInt": "3"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "6": {
+        "holeId": {
+          "$numberInt": "6"
+        },
+        "holeScore": {
+          "$numberInt": "3"
+        },
+        "par": {
+          "$numberInt": "3"
+        }
+      },
+      "7": {
+        "holeId": {
+          "$numberInt": "7"
+        },
+        "holeScore": {
+          "$numberInt": "5"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "8": {
+        "holeId": {
+          "$numberInt": "8"
+        },
+        "holeScore": {
+          "$numberInt": "5"
+        },
+        "par": {
+          "$numberInt": "5"
+        }
+      },
+      "9": {
+        "holeId": {
+          "$numberInt": "9"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "10": {
+        "holeId": {
+          "$numberInt": "10"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "11": {
+        "holeId": {
+          "$numberInt": "11"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "12": {
+        "holeId": {
+          "$numberInt": "12"
+        },
+        "holeScore": {
+          "$numberInt": "3"
+        },
+        "par": {
+          "$numberInt": "3"
+        }
+      },
+      "13": {
+        "holeId": {
+          "$numberInt": "13"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "5"
+        }
+      },
+      "14": {
+        "holeId": {
+          "$numberInt": "14"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "15": {
+        "holeId": {
+          "$numberInt": "15"
+        },
+        "holeScore": {
+          "$numberInt": "5"
+        },
+        "par": {
+          "$numberInt": "5"
+        }
+      },
+      "16": {
+        "holeId": {
+          "$numberInt": "16"
+        },
+        "holeScore": {
+          "$numberInt": "2"
+        },
+        "par": {
+          "$numberInt": "3"
+        }
+      },
+      "17": {
+        "holeId": {
+          "$numberInt": "17"
+        },
+        "holeScore": {
+          "$numberInt": "5"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "18": {
+        "holeId": {
+          "$numberInt": "18"
+        },
+        "holeScore": {
+          "$numberInt": "3"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      }
+    },
+    "totalShots": {
+      "$numberInt": "70"
+    },
+    "timestamp": {
+      "$date": {
+        "$numberLong": "1712953624148"
+      }
+    }
+  },
+  {
+    "_id": {
+      "$oid": "661a8293499881e1948b82fa"
+    },
+    "orgId": "1",
+    "year": "2024",
+    "tournId": "014",
+    "courseId": "014",
+    "playerId": "50525",
+    "lastName": "Morikawa",
+    "firstName": "Collin",
+    "roundId": {
+      "$numberInt": "3"
+    },
+    "startingHole": {
+      "$numberInt": "1"
+    },
+    "roundComplete": true,
+    "lastUpdated": {
+      "$date": {
+        "$numberLong": "1713048544000"
+      }
+    },
+    "currentRoundScore": "-3",
+    "currentHole": {
+      "$numberInt": "18"
+    },
+    "holes": {
+      "1": {
+        "holeId": {
+          "$numberInt": "1"
+        },
+        "holeScore": {
+          "$numberInt": "3"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "2": {
+        "holeId": {
+          "$numberInt": "2"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "5"
+        }
+      },
+      "3": {
+        "holeId": {
+          "$numberInt": "3"
+        },
+        "holeScore": {
+          "$numberInt": "3"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "4": {
+        "holeId": {
+          "$numberInt": "4"
+        },
+        "holeScore": {
+          "$numberInt": "3"
+        },
+        "par": {
+          "$numberInt": "3"
+        }
+      },
+      "5": {
+        "holeId": {
+          "$numberInt": "5"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "6": {
+        "holeId": {
+          "$numberInt": "6"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "3"
+        }
+      },
+      "7": {
+        "holeId": {
+          "$numberInt": "7"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "8": {
+        "holeId": {
+          "$numberInt": "8"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "5"
+        }
+      },
+      "9": {
+        "holeId": {
+          "$numberInt": "9"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "10": {
+        "holeId": {
+          "$numberInt": "10"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "11": {
+        "holeId": {
+          "$numberInt": "11"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "12": {
+        "holeId": {
+          "$numberInt": "12"
+        },
+        "holeScore": {
+          "$numberInt": "3"
+        },
+        "par": {
+          "$numberInt": "3"
+        }
+      },
+      "13": {
+        "holeId": {
+          "$numberInt": "13"
+        },
+        "holeScore": {
+          "$numberInt": "5"
+        },
+        "par": {
+          "$numberInt": "5"
+        }
+      },
+      "14": {
+        "holeId": {
+          "$numberInt": "14"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "15": {
+        "holeId": {
+          "$numberInt": "15"
+        },
+        "holeScore": {
+          "$numberInt": "5"
+        },
+        "par": {
+          "$numberInt": "5"
+        }
+      },
+      "16": {
+        "holeId": {
+          "$numberInt": "16"
+        },
+        "holeScore": {
+          "$numberInt": "3"
+        },
+        "par": {
+          "$numberInt": "3"
+        }
+      },
+      "17": {
+        "holeId": {
+          "$numberInt": "17"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "18": {
+        "holeId": {
+          "$numberInt": "18"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      }
+    },
+    "totalShots": {
+      "$numberInt": "69"
+    },
+    "timestamp": {
+      "$date": {
+        "$numberLong": "1713048603002"
+      }
+    }
+  },
+  {
+    "_id": {
+      "$oid": "661bc7fe499881e194186ac8"
+    },
+    "orgId": "1",
+    "year": "2024",
+    "tournId": "014",
+    "courseId": "014",
+    "playerId": "50525",
+    "lastName": "Morikawa",
+    "firstName": "Collin",
+    "roundId": {
+      "$numberInt": "4"
+    },
+    "startingHole": {
+      "$numberInt": "1"
+    },
+    "roundComplete": true,
+    "lastUpdated": {
+      "$date": {
+        "$numberLong": "1713135835000"
+      }
+    },
+    "currentRoundScore": "+2",
+    "currentHole": {
+      "$numberInt": "18"
+    },
+    "holes": {
+      "1": {
+        "holeId": {
+          "$numberInt": "1"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "2": {
+        "holeId": {
+          "$numberInt": "2"
+        },
+        "holeScore": {
+          "$numberInt": "5"
+        },
+        "par": {
+          "$numberInt": "5"
+        }
+      },
+      "3": {
+        "holeId": {
+          "$numberInt": "3"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "4": {
+        "holeId": {
+          "$numberInt": "4"
+        },
+        "holeScore": {
+          "$numberInt": "3"
+        },
+        "par": {
+          "$numberInt": "3"
+        }
+      },
+      "5": {
+        "holeId": {
+          "$numberInt": "5"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "6": {
+        "holeId": {
+          "$numberInt": "6"
+        },
+        "holeScore": {
+          "$numberInt": "3"
+        },
+        "par": {
+          "$numberInt": "3"
+        }
+      },
+      "7": {
+        "holeId": {
+          "$numberInt": "7"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "8": {
+        "holeId": {
+          "$numberInt": "8"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "5"
+        }
+      },
+      "9": {
+        "holeId": {
+          "$numberInt": "9"
+        },
+        "holeScore": {
+          "$numberInt": "6"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "10": {
+        "holeId": {
+          "$numberInt": "10"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "11": {
+        "holeId": {
+          "$numberInt": "11"
+        },
+        "holeScore": {
+          "$numberInt": "6"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "12": {
+        "holeId": {
+          "$numberInt": "12"
+        },
+        "holeScore": {
+          "$numberInt": "3"
+        },
+        "par": {
+          "$numberInt": "3"
+        }
+      },
+      "13": {
+        "holeId": {
+          "$numberInt": "13"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "5"
+        }
+      },
+      "14": {
+        "holeId": {
+          "$numberInt": "14"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "15": {
+        "holeId": {
+          "$numberInt": "15"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "5"
+        }
+      },
+      "16": {
+        "holeId": {
+          "$numberInt": "16"
+        },
+        "holeScore": {
+          "$numberInt": "3"
+        },
+        "par": {
+          "$numberInt": "3"
+        }
+      },
+      "17": {
+        "holeId": {
+          "$numberInt": "17"
+        },
+        "holeScore": {
+          "$numberInt": "4"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      },
+      "18": {
+        "holeId": {
+          "$numberInt": "18"
+        },
+        "holeScore": {
+          "$numberInt": "5"
+        },
+        "par": {
+          "$numberInt": "4"
+        }
+      }
+    },
+    "totalShots": {
+      "$numberInt": "74"
+    },
+    "timestamp": {
+      "$date": {
+        "$numberLong": "1713135872751"
+      }
+    }
+  }
+]

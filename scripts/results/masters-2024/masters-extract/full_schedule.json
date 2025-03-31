@@ -1,0 +1,1382 @@
+{
+  "_id": {
+    "$oid": "64fbe3ac235ac8857ff8e769"
+  },
+  "orgId": "1",
+  "year": "2024",
+  "schedule": [
+    {
+      "tournId": "016",
+      "name": "The Sentry",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1704326400000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1704585600000"
+          }
+        },
+        "weekNumber": "1"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "20000000"
+      },
+      "winnersShare": {
+        "$numberInt": "3600000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "700"
+      }
+    },
+    {
+      "tournId": "006",
+      "name": "Sony Open in Hawaii",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1704931200000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1705190400000"
+          }
+        },
+        "weekNumber": "2"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "8300000"
+      },
+      "winnersShare": {
+        "$numberInt": "1494000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "500"
+      }
+    },
+    {
+      "tournId": "002",
+      "name": "The American Express",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1705536000000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1705795200000"
+          }
+        },
+        "weekNumber": "3"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "8400000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "500"
+      }
+    },
+    {
+      "tournId": "004",
+      "name": "Farmers Insurance Open",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1706054400000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1706313600000"
+          }
+        },
+        "weekNumber": "4"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "9000000"
+      },
+      "winnersShare": {
+        "$numberInt": "1620000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "500"
+      }
+    },
+    {
+      "tournId": "005",
+      "name": "AT&T Pebble Beach Pro-Am",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1706745600000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1707004800000"
+          }
+        },
+        "weekNumber": "5"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "20000000"
+      },
+      "winnersShare": {
+        "$numberInt": "3600000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "700"
+      }
+    },
+    {
+      "tournId": "003",
+      "name": "WM Phoenix Open",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1707350400000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1707609600000"
+          }
+        },
+        "weekNumber": "6"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "8800000"
+      },
+      "winnersShare": {
+        "$numberInt": "1584000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "500"
+      }
+    },
+    {
+      "tournId": "007",
+      "name": "The Genesis Invitational",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1707955200000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1708214400000"
+          }
+        },
+        "weekNumber": "7"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "20000000"
+      },
+      "winnersShare": {
+        "$numberInt": "4000000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "700"
+      }
+    },
+    {
+      "tournId": "540",
+      "name": "Mexico Open at Vidanta",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1708560000000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1708819200000"
+          }
+        },
+        "weekNumber": "8"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "8100000"
+      },
+      "winnersShare": {
+        "$numberInt": "1458000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "500"
+      }
+    },
+    {
+      "tournId": "010",
+      "name": "Cognizant Classic in The Palm Beaches",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1709164800000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1709424000000"
+          }
+        },
+        "weekNumber": "9"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "9000000"
+      },
+      "winnersShare": {
+        "$numberInt": "1620000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "500"
+      }
+    },
+    {
+      "tournId": "009",
+      "name": "Arnold Palmer Invitational presented by Mastercard",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1709769600000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1710028800000"
+          }
+        },
+        "weekNumber": "10"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "20000000"
+      },
+      "winnersShare": {
+        "$numberInt": "4000000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "700"
+      }
+    },
+    {
+      "tournId": "483",
+      "name": "Puerto Rico Open",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1709769600000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1710028800000"
+          }
+        },
+        "weekNumber": "10"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "4000000"
+      },
+      "winnersShare": {
+        "$numberInt": "720000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "300"
+      }
+    },
+    {
+      "tournId": "011",
+      "name": "THE PLAYERS Championship",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1710374400000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1710633600000"
+          }
+        },
+        "weekNumber": "11"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "25000000"
+      },
+      "winnersShare": {
+        "$numberInt": "4500000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "750"
+      }
+    },
+    {
+      "tournId": "475",
+      "name": "Valspar Championship",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1710979200000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1711238400000"
+          }
+        },
+        "weekNumber": "12"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "8400000"
+      },
+      "winnersShare": {
+        "$numberInt": "1512000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "500"
+      }
+    },
+    {
+      "tournId": "020",
+      "name": "Texas Children's Houston Open",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1711584000000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1711843200000"
+          }
+        },
+        "weekNumber": "13"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "9100000"
+      },
+      "winnersShare": {
+        "$numberInt": "1638000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "500"
+      }
+    },
+    {
+      "tournId": "041",
+      "name": "Valero Texas Open",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1712188800000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1712448000000"
+          }
+        },
+        "weekNumber": "14"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "9200000"
+      },
+      "winnersShare": {
+        "$numberInt": "1656000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "500"
+      }
+    },
+    {
+      "tournId": "014",
+      "name": "Masters Tournament",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1712793600000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1713052800000"
+          }
+        },
+        "weekNumber": "15"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "20000000"
+      },
+      "winnersShare": {
+        "$numberInt": "3600000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "750"
+      }
+    },
+    {
+      "tournId": "012",
+      "name": "RBC Heritage",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1713398400000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1713657600000"
+          }
+        },
+        "weekNumber": "16"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "20000000"
+      },
+      "winnersShare": {
+        "$numberInt": "3600000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "700"
+      }
+    },
+    {
+      "tournId": "522",
+      "name": "Corales Puntacana Championship",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1713398400000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1713657600000"
+          }
+        },
+        "weekNumber": "16"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "4000000"
+      },
+      "winnersShare": {
+        "$numberInt": "720000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "300"
+      }
+    },
+    {
+      "tournId": "018",
+      "name": "Zurich Classic of New Orleans",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1714003200000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1714262400000"
+          }
+        },
+        "weekNumber": "17"
+      },
+      "format": "team",
+      "purse": {
+        "$numberInt": "8900000"
+      },
+      "winnersShare": {
+        "$numberInt": "1286050"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "400"
+      }
+    },
+    {
+      "tournId": "019",
+      "name": "THE CJ CUP Byron Nelson",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1714608000000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1714867200000"
+          }
+        },
+        "weekNumber": "18"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "9500000"
+      },
+      "winnersShare": {
+        "$numberInt": "1710000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "500"
+      }
+    },
+    {
+      "tournId": "480",
+      "name": "Wells Fargo Championship",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1715212800000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1715472000000"
+          }
+        },
+        "weekNumber": "19"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "20000000"
+      },
+      "winnersShare": {
+        "$numberInt": "3600000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "700"
+      }
+    },
+    {
+      "tournId": "553",
+      "name": "Myrtle Beach Classic",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1715212800000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1715472000000"
+          }
+        },
+        "weekNumber": "19"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "4000000"
+      },
+      "winnersShare": {
+        "$numberInt": "720000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "300"
+      }
+    },
+    {
+      "tournId": "033",
+      "name": "PGA Championship",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1715817600000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1716076800000"
+          }
+        },
+        "weekNumber": "20"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "0"
+      },
+      "winnersShare": {
+        "$numberInt": "3330000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "750"
+      }
+    },
+    {
+      "tournId": "021",
+      "name": "Charles Schwab Challenge",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1716422400000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1716681600000"
+          }
+        },
+        "weekNumber": "21"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "9100000"
+      },
+      "winnersShare": {
+        "$numberInt": "1638000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "500"
+      }
+    },
+    {
+      "tournId": "032",
+      "name": "RBC Canadian Open",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1717027200000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1717286400000"
+          }
+        },
+        "weekNumber": "22"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "9400000"
+      },
+      "winnersShare": {
+        "$numberInt": "1692000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "500"
+      }
+    },
+    {
+      "tournId": "023",
+      "name": "the Memorial Tournament presented by Workday",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1717632000000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1717891200000"
+          }
+        },
+        "weekNumber": "23"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "20000000"
+      },
+      "winnersShare": {
+        "$numberInt": "4000000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "700"
+      }
+    },
+    {
+      "tournId": "026",
+      "name": "U.S. Open",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1718236800000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1718496000000"
+          }
+        },
+        "weekNumber": "24"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "0"
+      },
+      "winnersShare": {
+        "$numberInt": "4300000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "750"
+      }
+    },
+    {
+      "tournId": "034",
+      "name": "Travelers Championship",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1718841600000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1719100800000"
+          }
+        },
+        "weekNumber": "25"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "20000000"
+      },
+      "winnersShare": {
+        "$numberInt": "3600000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "700"
+      }
+    },
+    {
+      "tournId": "524",
+      "name": "Rocket Mortgage Classic",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1719446400000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1719705600000"
+          }
+        },
+        "weekNumber": "26"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "9200000"
+      },
+      "winnersShare": {
+        "$numberInt": "1656000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "500"
+      }
+    },
+    {
+      "tournId": "030",
+      "name": "John Deere Classic",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1720051200000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1720310400000"
+          }
+        },
+        "weekNumber": "27"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "8000000"
+      },
+      "winnersShare": {
+        "$numberInt": "1440000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "500"
+      }
+    },
+    {
+      "tournId": "541",
+      "name": "Genesis Scottish Open",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1720656000000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1720915200000"
+          }
+        },
+        "weekNumber": "28"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "9000000"
+      },
+      "winnersShare": {
+        "$numberInt": "1575000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "500"
+      }
+    },
+    {
+      "tournId": "518",
+      "name": "ISCO Championship",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1720656000000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1720915200000"
+          }
+        },
+        "weekNumber": "28"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "4000000"
+      },
+      "winnersShare": {
+        "$numberInt": "720000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "300"
+      }
+    },
+    {
+      "tournId": "100",
+      "name": "The Open Championship",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1721260800000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1721520000000"
+          }
+        },
+        "weekNumber": "29"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "17000000"
+      },
+      "winnersShare": {
+        "$numberInt": "3100000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "750"
+      }
+    },
+    {
+      "tournId": "472",
+      "name": "Barracuda Championship",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1721260800000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1721520000000"
+          }
+        },
+        "weekNumber": "29"
+      },
+      "format": "stableford",
+      "purse": {
+        "$numberInt": "4000000"
+      },
+      "winnersShare": {
+        "$numberInt": "720000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "300"
+      }
+    },
+    {
+      "tournId": "525",
+      "name": "3M Open",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1721865600000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1722124800000"
+          }
+        },
+        "weekNumber": "30"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "8100000"
+      },
+      "winnersShare": {
+        "$numberInt": "1458000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "500"
+      }
+    },
+    {
+      "tournId": "519",
+      "name": "Men’s Olympic Golf Competition",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1722470400000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1722729600000"
+          }
+        },
+        "weekNumber": "31"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "0"
+      }
+    },
+    {
+      "tournId": "013",
+      "name": "Wyndham Championship",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1723075200000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1723334400000"
+          }
+        },
+        "weekNumber": "32"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "7900000"
+      },
+      "winnersShare": {
+        "$numberInt": "1422000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "500"
+      }
+    },
+    {
+      "tournId": "027",
+      "name": "FedEx St. Jude Championship",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1723680000000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1723939200000"
+          }
+        },
+        "weekNumber": "33"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "20000000"
+      },
+      "winnersShare": {
+        "$numberInt": "3600000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "2000"
+      }
+    },
+    {
+      "tournId": "028",
+      "name": "BMW Championship",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1724284800000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1724544000000"
+          }
+        },
+        "weekNumber": "34"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "20000000"
+      },
+      "winnersShare": {
+        "$numberInt": "3600000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "2000"
+      }
+    },
+    {
+      "tournId": "060",
+      "name": "TOUR Championship",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1724889600000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1725148800000"
+          }
+        },
+        "weekNumber": "35"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "0"
+      }
+    },
+    {
+      "tournId": "464",
+      "name": "Procore Championship",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1726099200000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1726358400000"
+          }
+        },
+        "weekNumber": "37"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "6000000"
+      },
+      "winnersShare": {
+        "$numberInt": "1512000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "500"
+      }
+    },
+    {
+      "tournId": "500",
+      "name": "Presidents Cup",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1727308800000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1727568000000"
+          }
+        },
+        "weekNumber": "39"
+      },
+      "format": "team match",
+      "purse": {
+        "$numberInt": "0"
+      }
+    },
+    {
+      "tournId": "054",
+      "name": "Sanderson Farms Championship",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1727913600000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1728172800000"
+          }
+        },
+        "weekNumber": "40"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "0"
+      },
+      "winnersShare": {
+        "$numberInt": "1476000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "500"
+      }
+    },
+    {
+      "tournId": "554",
+      "name": "Black Desert Championship",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1728518400000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1728777600000"
+          }
+        },
+        "weekNumber": "41"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "0"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "500"
+      }
+    },
+    {
+      "tournId": "047",
+      "name": "Shriners Children's Open",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1729123200000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1729382400000"
+          }
+        },
+        "weekNumber": "42"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "0"
+      },
+      "winnersShare": {
+        "$numberInt": "1512000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "500"
+      }
+    },
+    {
+      "tournId": "527",
+      "name": "ZOZO CHAMPIONSHIP",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1729728000000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1729987200000"
+          }
+        },
+        "weekNumber": "43"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "0"
+      },
+      "winnersShare": {
+        "$numberInt": "1530000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "500"
+      }
+    },
+    {
+      "tournId": "457",
+      "name": "World Wide Technology Championship",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1730937600000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1731196800000"
+          }
+        },
+        "weekNumber": "45"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "0"
+      },
+      "winnersShare": {
+        "$numberInt": "1476000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "500"
+      }
+    },
+    {
+      "tournId": "528",
+      "name": "Butterfield Bermuda Championship",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1731542400000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1731801600000"
+          }
+        },
+        "weekNumber": "46"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "0"
+      },
+      "winnersShare": {
+        "$numberInt": "1170000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "500"
+      }
+    },
+    {
+      "tournId": "493",
+      "name": "The RSM Classic",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1732147200000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1732406400000"
+          }
+        },
+        "weekNumber": "47"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "0"
+      },
+      "winnersShare": {
+        "$numberInt": "1512000"
+      },
+      "fedexCupPoints": {
+        "$numberInt": "500"
+      }
+    },
+    {
+      "tournId": "478",
+      "name": "Hero World Challenge",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1733356800000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1733616000000"
+          }
+        },
+        "weekNumber": "49"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "5000000"
+      },
+      "winnersShare": {
+        "$numberInt": "1000000"
+      }
+    },
+    {
+      "tournId": "551",
+      "name": "Grant Thornton Invitational",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1733961600000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1734220800000"
+          }
+        },
+        "weekNumber": "50"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "4000000"
+      }
+    },
+    {
+      "tournId": "088",
+      "name": "PGA TOUR Q-School presented by Korn Ferry",
+      "date": {
+        "start": {
+          "$date": {
+            "$numberLong": "1733961600000"
+          }
+        },
+        "end": {
+          "$date": {
+            "$numberLong": "1734220800000"
+          }
+        },
+        "weekNumber": "50"
+      },
+      "format": "stroke",
+      "purse": {
+        "$numberInt": "510000"
+      },
+      "winnersShare": {
+        "$numberInt": "50000"
+      }
+    }
+  ],
+  "timestamp": {
+    "$date": {
+      "$numberLong": "1725288310729"
+    }
+  }
+}
